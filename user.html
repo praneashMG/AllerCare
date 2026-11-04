@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23EA580C%22/><path d=%22M50 22 L72 32 V52 C72 66 50 78 50 78 C50 78 28 66 28 52 V32 Z%22 fill=%22white%22/></svg>">
+  <title>AllerCare · Patient Dashboard</title>
+  <!-- Tailwind + Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* --- Root Color Engine (AllerCare Theme) --- */
+    :root, html[data-theme='light'] {
+      --color-background: #F8FAFC;
+      --color-primary-text: #0F172A;
+      --color-secondary-text: #475569;
+      --color-accent: #EA580C;        /* Clinical Teal 600 */
+      --color-accent-light: #FB923C;   /* Teal 500 */
+      --color-border: #E2E8F0;
+      --color-hover: #FFF7ED;
+      --color-card-bg: #FFFFFF;
+      --color-sidebar-bg: #FFFFFF;
+      --color-success: #10B981;
+      --color-warning: #F59E0B;
+      --color-danger: #EF4444;
+      --color-info: #EA580C;
+    }
+    html[data-theme='dark'] {
+      --color-background: #0F172A;
+      --color-primary-text: #F1F5F9;
+      --color-secondary-text: #94A3B8;
+      --color-accent: #14B8A6;
+      --color-accent-light: #2DD4BF;
+      --color-border: rgba(255,255,255,0.08);
+      --color-hover: rgba(255,255,255,0.05);
+      --color-card-bg: #1E293B;
+      --color-sidebar-bg: #0F172A;
+      --color-success: #059669;
+      --color-warning: #D97706;
+      --color-danger: #DC2626;
+      --color-info: #EA580C;
+    }
+    body {
+      background-color: var(--color-background);
+      color: var(--color-primary-text);
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.2s, color 0.2s;
+      overflow-x: hidden;
+      width: 100%;
+    }
+    * { font-family: 'Inter', sans-serif; }
+    h1, h2 { font-weight: 600 !important; }
+    h3, h4, h5, h6 { font-weight: 500 !important; }
+    .sidebar-link, .text-secondary-text, .status-badge, p.uppercase, span.uppercase { font-weight: 500 !important; }
+    .text-gold { color: var(--color-accent); }
+    .text-burgundy { color: var(--color-accent-light); }
+    .bg-background { background-color: var(--color-background); }
+    .text-primary-text { color: var(--color-primary-text); }
+    .text-secondary-text { color: var(--color-secondary-text); }
+    .text-accent { color: var(--color-accent); }
+    .bg-hover { background-color: var(--color-hover); }
+    .border-border { border-color: var(--color-border); }
+    .card-bg { background-color: var(--color-card-bg); }
+    .bg-sidebar { background-color: var(--color-sidebar-bg); }
+    .bg-success { background-color: var(--color-success); }
+    .bg-warning { background-color: var(--color-warning); }
+    .bg-danger { background-color: var(--color-danger); }
+    .bg-info { background-color: var(--color-info); }
+    .text-success { color: var(--color-success); }
+    .text-warning { color: var(--color-warning); }
+    .text-danger { color: var(--color-danger); }
+    .text-info { color: var(--color-info); }
+
+    .dashboard-card {
+      background-color: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 1.25rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 18px -8px rgba(0,0,0,0.04);
+      height: auto;
+    }
+    .dashboard-card:hover {
+      border-color: var(--color-accent);
+      box-shadow: 0 16px 24px -12px rgba(234,88,12,0.15);
+    }
+    .status-pulse {
+      width: 10px; height: 10px;
+      background-color: var(--color-accent);
+      border-radius: 9999px;
+      box-shadow: 0 0 0 0 rgba(234,88,12,0.5);
+      animation: pulse2 2s infinite;
+    }
+    @keyframes pulse2 { 70% { box-shadow: 0 0 0 6px rgba(234,88,12,0); } }
+
+    .sidebar-link {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      color: var(--color-secondary-text);
+      transition: all 0.18s ease;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .sidebar-link:hover, .sidebar-link.active {
+      background-color: var(--color-accent);
+      color: #FFFFFF;
+      background: linear-gradient(145deg, var(--color-accent-light), var(--color-accent));
+    }
+    .sidebar-link:hover svg, .sidebar-link.active svg { stroke: white; }
+    .sidebar-link.logout:hover { background: #d13b3b; color: white; }
+
+    html[dir="rtl"] .sidebar-link { flex-direction: row-reverse; }
+    html[dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+    html[dir="rtl"] .sidebar-link svg { transform: scaleX(-1); }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s cubic-bezier(0.2,0.9,0.3,1), transform 0.6s cubic-bezier(0.2,0.9,0.3,1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .user-section { display: block; }
+    .bg-accent-gradient { background: linear-gradient(145deg, var(--color-accent-light) 0%, var(--color-accent) 100%); }
+
+    .custom-scrollbar::-webkit-scrollbar { height: 4px; width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 10px; }
+
+    #mobile-overlay {
+      background-color: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      position: fixed; inset: 0; z-index: 55;
+    }
+    #mobile-overlay.active { opacity: 1; pointer-events: auto; }
+
+    .progress-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent));
+      transition: width 0.3s ease;
+    }
+    .status-badge {
+      padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.7rem;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .status-badge.active { background-color: var(--color-success); color: white; }
+    .status-badge.pending { background-color: var(--color-warning); color: white; }
+    .status-badge.completed { background-color: var(--color-info); color: white; }
+    .status-badge.upcoming { background-color: var(--color-accent); color: white; }
+  </style>
+</head>
+<body class="antialiased bg-background h-screen overflow-hidden w-full">
+
+  <!-- TOP BAR -->
+  <header class="border-b border-border bg-background sticky top-0 z-50 w-full">
+    <div class="max-w-[1920px] mx-auto px-2 sm:px-6 lg:px-10 py-3 flex items-center justify-between gap-1 sm:gap-3">
+      <!-- Hamburger + Brand -->
+      <div class="flex items-center gap-1 sm:gap-3">
+        <button id="mobile-menu-toggle" class="xl:hidden p-1.5 sm:p-2 -ml-1 sm:-ml-2 rounded-xl hover:bg-hover transition text-primary-text">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <a href="index.html" class="flex items-center gap-2 sm:gap-3 shrink-0 group">
+            <span class="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-md shadow-orange-600/20 group-hover:scale-105 transition-transform">
+              <i class="fas fa-shield-virus text-base sm:text-xl"></i>
+            </span>
+            <div class="leading-tight">
+              <span class="block text-lg sm:text-xl font-black tracking-tight text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors">
+                Aller<span class="text-orange-600">Care</span>
+              </span>
+              <span class="block text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-orange-700 dark:text-orange-400">
+                Testing & Immunotherapy
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Patient Utilities -->
+      <div class="flex items-center gap-1 sm:gap-4 shrink-0 rtl:flex-row-reverse">
+        <div class="hidden md:flex items-center bg-hover rounded-full px-4 py-2 border border-border w-32 sm:w-40 lg:w-auto overflow-hidden">
+          <i class="fas fa-search text-secondary-text text-sm mr-2"></i>
+          <input type="text" placeholder="Search services..." class="bg-transparent border-none outline-none text-sm w-48 text-primary-text placeholder-secondary-text/50">
+        </div>
+        <button id="lang-toggle" class="p-1.5 sm:p-2 rounded-full hover:bg-hover transition text-primary-text"><i class="fas fa-exchange-alt"></i></button>
+        <button id="theme-toggle-user" class="p-1.5 sm:p-2 rounded-full hover:bg-hover transition text-primary-text"><i class="fas fa-moon"></i></button>
+        <div class="relative">
+          <button class="p-1.5 sm:p-2 rounded-full hover:bg-hover transition text-primary-text relative">
+            <i class="fas fa-bell"></i>
+            <span class="absolute top-1 right-1 w-2 h-2 bg-danger rounded-full"></span>
+          </button>
+        </div>
+        <div class="relative flex items-center gap-1.5 sm:gap-2 pl-1.5 sm:pl-3 border-l border-border rtl:border-l-0 rtl:border-r min-w-0">
+          <div class="relative flex-shrink-0">
+            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-accent/10 border border-accent flex items-center justify-center text-accent font-semibold">
+              <i class="fas fa-user text-xs"></i>
+            </div>
+            <span class="absolute bottom-0 right-0 status-pulse"></span>
+          </div>
+          <div class="hidden sm:block text-sm">
+            <p class="font-semibold leading-none">Olivia Park</p>
+            <p class="text-[10px] text-secondary-text mt-1 uppercase tracking-widest font-semibold">Patient · Premium</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE OVERLAY -->
+  <div id="mobile-overlay" class="xl:hidden"></div>
+
+  <!-- MAIN LAYOUT -->
+  <main class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10 py-6 h-[calc(100vh-64px)] w-full relative">
+    <div class="flex flex-col xl:flex-row gap-4 xl:gap-6 xl:gap-10 h-full">
+
+      <!-- SIDEBAR -->
+      <aside id="sidebar-container" class="fixed xl:static top-0 left-0 rtl:right-0 rtl:left-auto h-full xl:h-auto w-72 xl:w-80 z-[60] xl:z-10 transform -translate-x-full rtl:translate-x-full xl:translate-x-0 xl:rtl:translate-x-0 transition-transform duration-300 ease-in-out bg-sidebar xl:bg-transparent flex-shrink-0">
+        <div class="dashboard-card p-5 bg-sidebar h-full overflow-y-auto custom-scrollbar border-r xl:border border-border xl:rounded-[1.25rem] rounded-none shadow-none xl:shadow-md">
+          <!-- Mobile header -->
+          <div class="flex xl:hidden justify-between items-center mb-6 px-2">
+            <div class="flex items-center gap-2 text-gold"><i class="fas fa-bars-staggered"></i><span class="text-xs font-medium uppercase tracking-widest">Menu</span></div>
+            <button id="close-sidebar" class="p-2 hover:bg-hover rounded-lg text-primary-text"><i class="fas fa-times"></i></button>
+          </div>
+          <!-- Mobile profile -->
+          <div class="flex xl:hidden items-center gap-3 mb-6 px-2 pb-6 border-b border-border">
+            <div class="relative flex-shrink-0">
+              <div class="w-10 h-10 rounded-full bg-accent/10 border border-accent flex items-center justify-center text-accent font-semibold"><i class="fas fa-user text-sm"></i></div>
+              <span class="absolute bottom-0 right-0 status-pulse"></span>
+            </div>
+            <div><p class="font-semibold text-primary-text leading-tight">Olivia Park</p><p class="text-[10px] text-secondary-text mt-0.5 uppercase tracking-widest font-medium">Premium Member</p></div>
+          </div>
+
+          <nav class="flex flex-col gap-1">
+            <p class="text-[10px] uppercase tracking-widest text-secondary-text font-medium mt-2 mb-2 px-2">My Health</p>
+            <a href="#" onclick="activateSection('overview')" data-section="overview" class="sidebar-link active"><i class="fas fa-chart-pie w-5"></i><span>Overview & Results</span></a>
+            <a href="#" onclick="activateSection('bookings')" data-section="bookings" class="sidebar-link"><i class="fas fa-calendar-check w-5"></i><span>My Appointments</span></a>
+            <a href="#" onclick="activateSection('immunotherapy')" data-section="immunotherapy" class="sidebar-link"><i class="fas fa-syringe w-5"></i><span>Immunotherapy Tracker</span></a>
+            <p class="text-[10px] uppercase tracking-widest text-secondary-text font-medium mt-4 mb-2 px-2">Services</p>
+            <a href="#" onclick="activateSection('testing')" data-section="testing" class="sidebar-link"><i class="fas fa-vial w-5"></i><span>Allergy Testing</span></a>
+            <a href="#" onclick="activateSection('results')" data-section="results" class="sidebar-link"><i class="fas fa-file-medical w-5"></i><span>My Results</span></a>
+            <a href="#" onclick="activateSection('resources')" data-section="resources" class="sidebar-link"><i class="fas fa-book-medical w-5"></i><span>Resources</span></a>
+            <p class="text-[10px] uppercase tracking-widest text-secondary-text font-medium mt-4 mb-2 px-2">Info</p>
+            <a href="#" onclick="activateSection('rules')" data-section="rules" class="sidebar-link"><i class="fas fa-clock w-5"></i><span>Clinic Hours & Rules</span></a>
+            <a href="#" onclick="activateSection('settings')" data-section="settings" class="sidebar-link"><i class="fas fa-sliders w-5"></i><span>Settings</span></a>
+            <a href="#" onclick="activateSection('logout')" data-section="logout" class="sidebar-link logout mt-2 text-red-500"><i class="fas fa-power-off w-5"></i><span>Logout</span></a>
+          </nav>
+
+          <div class="mt-8 pt-4 border-t border-border text-[11px] text-secondary-text">
+            <div class="flex justify-between"><span>Membership</span><span class="font-semibold text-success">Premium</span></div>
+            <div class="flex justify-between mt-1.5"><span>Next appointment</span><span class="font-medium text-gold">Apr 10, 2026</span></div>
+            <div class="flex justify-between mt-1.5"><span>Immunotherapy</span><span class="font-medium">SCIT · Dose 8/12</span></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CONTENT AREA -->
+      <div class="flex-1 min-w-0 overflow-y-auto custom-scrollbar pr-2">
+
+        <!-- OVERVIEW / DASHBOARD -->
+        <div id="overview" class="user-section">
+          <div class="dashboard-card p-5 sm:p-7 reveal active mb-6 bg-accent-gradient text-white">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-semibold mb-2">👋 Welcome back, Olivia</h2>
+                <p class="text-white/80 text-sm">Track your allergy testing, immunotherapy schedule, and results—all in one place.</p>
+              </div>
+              <div class="flex gap-3">
+                <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider">Today · Apr 09, 2026</span>
+                <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider flex items-center gap-1"><i class="fas fa-circle text-success text-[6px]"></i> Clinic Open</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+            <div class="dashboard-card p-6 reveal">
+              <div class="flex justify-between items-start gap-4">
+                <div><p class="text-secondary-text text-xs uppercase tracking-wider font-medium">Upcoming Appointments</p><p class="text-3xl font-semibold mt-2">2</p><p class="text-success text-xs font-medium mt-2 flex items-center gap-1"><i class="fas fa-arrow-up"></i> Next: Apr 10</p></div>
+                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0"><i class="fas fa-calendar-alt text-accent text-xl"></i></div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-border flex gap-4 text-xs"><span><span class="font-semibold">1</span> <span class="text-secondary-text">skin test</span></span><span><span class="font-semibold">1</span> <span class="text-secondary-text">follow‑up</span></span></div>
+            </div>
+            <div class="dashboard-card p-6 reveal">
+              <div class="flex justify-between items-start gap-4">
+                <div><p class="text-secondary-text text-xs uppercase tracking-wider font-medium">Immunotherapy Progress</p><p class="text-3xl font-semibold mt-2">8/12</p><p class="text-warning text-xs font-medium mt-2 flex items-center gap-1"><i class="fas fa-clock"></i> Maintenance phase</p></div>
+                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0"><i class="fas fa-syringe text-accent text-xl"></i></div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-border flex gap-4 text-xs"><span><span class="font-semibold">SCIT</span> <span class="text-secondary-text">shots</span></span><span><span class="font-semibold">0.5 mL</span> <span class="text-secondary-text">dose</span></span></div>
+            </div>
+            <div class="dashboard-card p-6 reveal">
+              <div class="flex justify-between items-start gap-4">
+                <div><p class="text-secondary-text text-xs uppercase tracking-wider font-medium">Test Results</p><p class="text-3xl font-semibold mt-2">3</p><p class="text-success text-xs font-medium mt-2 flex items-center gap-1"><i class="fas fa-check-circle"></i> All reviewed</p></div>
+                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0"><i class="fas fa-file-medical text-accent text-xl"></i></div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-border flex gap-4 text-xs"><span><span class="font-semibold">2</span> <span class="text-secondary-text">skin prick</span></span><span><span class="font-semibold">1</span> <span class="text-secondary-text">patch test</span></span></div>
+            </div>
+            <div class="dashboard-card p-6 reveal">
+              <div class="flex justify-between items-start gap-4">
+                <div><p class="text-secondary-text text-xs uppercase tracking-wider font-medium">Membership</p><p class="text-3xl font-semibold mt-2">Premium</p><p class="text-success text-xs font-medium mt-2 flex items-center gap-1"><i class="fas fa-check-circle"></i> Valid until Dec 2026</p></div>
+                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0"><i class="fas fa-crown text-accent text-xl"></i></div>
+              </div>
+              <div class="mt-4 pt-4 border-t border-border flex gap-4 text-xs"><span><span class="font-semibold">Unlimited</span> <span class="text-secondary-text">consults</span></span><span><span class="font-semibold">2</span> <span class="text-secondary-text">guest passes</span></span></div>
+            </div>
+          </div>
+
+          <!-- Immunotherapy progress + quick action -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="dashboard-card p-6 lg:col-span-2 reveal">
+              <div class="flex justify-between items-center mb-6"><h3 class="font-semibold text-lg">Immunotherapy Schedule · SCIT</h3><select class="bg-hover border border-border rounded-full px-4 py-2 text-xs font-medium uppercase"><option>All doses</option><option>Build‑up</option><option>Maintenance</option></select></div>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span>Build‑up phase</span><span class="font-semibold text-success">Complete</span></div>
+                  <div class="progress-bar" style="width: 100%;"></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span>Maintenance phase</span><span class="font-semibold text-accent">8 of 12 doses</span></div>
+                  <div class="progress-bar" style="width: 66.6%;"></div>
+                </div>
+                <div class="pt-4 border-t border-border flex justify-between text-xs text-secondary-text">
+                  <span><i class="fas fa-syringe text-accent mr-1"></i> Next dose: Apr 12, 2026</span>
+                  <span><i class="fas fa-user-md text-accent mr-1"></i> Dr. Marcus Chen</span>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-card p-6 reveal">
+              <h3 class="font-semibold text-lg mb-4">Quick Actions</h3>
+              <div class="space-y-3">
+                <button class="w-full py-3 bg-accent-gradient text-white rounded-xl text-sm font-semibold shadow-lg"><i class="fas fa-calendar-plus mr-2"></i> Book Appointment</button>
+                <button class="w-full py-3 border border-border rounded-xl text-sm font-medium hover:bg-hover"><i class="fas fa-file-download mr-2"></i> Download Results</button>
+                <button class="w-full py-3 border border-border rounded-xl text-sm font-medium hover:bg-hover"><i class="fas fa-syringe mr-2"></i> Log Dose</button>
+              </div>
+              <div class="mt-6 pt-4 border-t border-border text-xs text-secondary-text"><span class="block">💡 Tip: Record any local reactions after your immunotherapy dose.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MY APPOINTMENTS -->
+        <div id="bookings" class="user-section hidden">
+          <div class="dashboard-card p-5 sm:p-7 reveal active">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+              <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text flex items-center gap-2"><span class="text-accent">📅</span> My Appointments</h2>
+              <div class="flex gap-3"><button class="px-6 py-3 bg-accent-gradient text-white rounded-full text-xs font-semibold uppercase tracking-widest shadow-lg"><i class="fas fa-plus mr-1"></i> Book New</button></div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-vial text-accent text-xl"></i></div><div><p class="font-semibold">Skin Prick Test · 40 Inhalants</p><p class="text-xs text-secondary-text mt-1">Apr 10, 2026 · 10:00 AM · Dr. Marcus Chen</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="far fa-check-circle text-success"></i> Confirmed</span><span><i class="fas fa-clock"></i> 15 min</span></div></div></div>
+                <div><span class="status-badge completed">Confirmed</span></div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-syringe text-accent text-xl"></i></div><div><p class="font-semibold">Immunotherapy · Maintenance Dose #9</p><p class="text-xs text-secondary-text mt-1">Apr 12, 2026 · 2:00 PM · Nurse Amy Lawson</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="far fa-clock text-warning"></i> Pending confirmation</span><span><i class="fas fa-syringe"></i> 0.5 mL</span></div></div></div>
+                <div><span class="status-badge pending">Pending</span></div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-user-md text-accent text-xl"></i></div><div><p class="font-semibold">Follow‑up Consultation</p><p class="text-xs text-secondary-text mt-1">Apr 24, 2026 · 11:30 AM · Dr. Priya Nair</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="far fa-check-circle text-success"></i> Confirmed</span><span><i class="fas fa-clipboard-list"></i> Review</span></div></div></div>
+                <div><span class="status-badge completed">Confirmed</span></div>
+              </div>
+            </div>
+            <div class="mt-6 p-4 bg-hover rounded-2xl text-sm"><i class="fas fa-info-circle text-accent mr-2"></i> Cancel or reschedule up to 24h in advance. Late cancellations may incur a fee.</div>
+          </div>
+        </div>
+
+        <!-- IMMUNOTHERAPY TRACKER -->
+        <div id="immunotherapy" class="user-section hidden">
+          <div class="dashboard-card p-5 sm:p-7 reveal active">
+            <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-8 flex items-center gap-2"><span class="text-accent">💉</span> Immunotherapy Tracker</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="p-6 bg-hover rounded-2xl">
+                <h3 class="font-bold text-lg mb-4"><i class="fas fa-syringe text-accent mr-2"></i>SCIT · Allergy Shots</h3>
+                <ul class="space-y-3 text-sm">
+                  <li class="flex justify-between"><span>Current phase</span><span class="font-semibold text-accent">Maintenance</span></li>
+                  <li class="flex justify-between"><span>Doses completed</span><span class="font-semibold">8 of 12</span></li>
+                  <li class="flex justify-between"><span>Last dose</span><span class="font-semibold">Mar 29, 2026</span></li>
+                  <li class="flex justify-between"><span>Next dose</span><span class="font-semibold text-gold">Apr 12, 2026</span></li>
+                </ul>
+                <div class="mt-4">
+                  <div class="flex justify-between text-xs mb-1"><span>Progress</span><span>66%</span></div>
+                  <div class="progress-bar" style="width: 66.6%;"></div>
+                </div>
+              </div>
+              <div class="p-6 bg-hover rounded-2xl">
+                <h3 class="font-bold text-lg mb-4"><i class="fas fa-droplet text-accent mr-2"></i>SLIT · Allergy Drops</h3>
+                <ul class="space-y-3 text-sm">
+                  <li class="flex justify-between"><span>Status</span><span class="font-semibold text-secondary-text">Not prescribed</span></li>
+                  <li class="flex justify-between"><span>Alternative option</span><span class="font-semibold">Available</span></li>
+                  <li class="flex justify-between"><span>Consultation</span><span class="font-semibold">Ask Dr. Chen</span></li>
+                  <li class="flex justify-between"><span>Eligibility</span><span class="font-semibold text-success">Eligible</span></li>
+                </ul>
+                <button class="mt-4 w-full py-2 border border-accent rounded-full text-sm font-semibold text-accent hover:bg-accent hover:text-white transition">Discuss SLIT option</button>
+              </div>
+            </div>
+            <div class="mt-6 p-4 bg-hover rounded-2xl text-sm"><i class="fas fa-info-circle text-accent mr-2"></i> Report any local reactions (swelling, redness > 2 cm) within 24 hours of your dose.</div>
+          </div>
+        </div>
+
+        <!-- ALLERGY TESTING (BOOK) -->
+        <div id="testing" class="user-section hidden">
+          <div class="dashboard-card p-5 sm:p-7 reveal active">
+            <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-8 flex items-center gap-2"><span class="text-accent">🧪</span> Book Allergy Testing</h2>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-hand-sparkles text-accent text-xl"></i></div><div><p class="font-semibold">Skin Prick Test · Inhalants</p><p class="text-xs text-secondary-text mt-1">Up to 40 allergens · 15‑minute results</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="fas fa-clock"></i> 20 min</span><span><i class="fas fa-tag"></i> Covered by Premium</span></div></div></div>
+                <div><button class="px-4 py-2 bg-accent-gradient text-white rounded-full text-xs font-semibold">Book</button></div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-utensils text-accent text-xl"></i></div><div><p class="font-semibold">Food Allergy Panel</p><p class="text-xs text-secondary-text mt-1">Peanut, tree nut, egg, milk, shellfish, wheat</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="fas fa-clock"></i> 30 min</span><span><i class="fas fa-tag"></i> Covered by Premium</span></div></div></div>
+                <div><button class="px-4 py-2 bg-accent-gradient text-white rounded-full text-xs font-semibold">Book</button></div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-hand-dots text-accent text-xl"></i></div><div><p class="font-semibold">Patch Test · Contact Dermatitis</p><p class="text-xs text-secondary-text mt-1">80‑allergen panel · 72‑hour reading</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="fas fa-clock"></i> 3 days</span><span><i class="fas fa-tag"></i> Covered by Premium</span></div></div></div>
+                <div><button class="px-4 py-2 bg-accent-gradient text-white rounded-full text-xs font-semibold">Book</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MY RESULTS -->
+        <div id="results" class="user-section hidden">
+          <div class="dashboard-card p-5 sm:p-7 reveal active">
+            <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-8 flex items-center gap-2"><span class="text-accent">📋</span> My Test Results</h2>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div><p class="font-semibold">Skin Prick Test · Inhalants</p><p class="text-xs text-secondary-text">Apr 02, 2026 · Dr. Marcus Chen</p><p class="text-xs text-accent mt-1"><i class="fas fa-check-circle"></i> Positive: dust mites (4+), pollen (3+), pet dander (2+)</p></div>
+                <div class="flex gap-2"><span class="status-badge completed">Reviewed</span><button class="text-accent"><i class="fas fa-download"></i></button></div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div><p class="font-semibold">Food Allergy Panel</p><p class="text-xs text-secondary-text">Mar 15, 2026 · Dr. Priya Nair</p><p class="text-xs text-accent mt-1"><i class="fas fa-check-circle"></i> Positive: peanut (3+), tree nut (2+) · Negative: egg, milk</p></div>
+                <div class="flex gap-2"><span class="status-badge completed">Reviewed</span><button class="text-accent"><i class="fas fa-download"></i></button></div>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div><p class="font-semibold">Patch Test · Contact Dermatitis</p><p class="text-xs text-secondary-text">Feb 20, 2026 · Dr. Marcus Chen</p><p class="text-xs text-accent mt-1"><i class="fas fa-check-circle"></i> Positive: nickel (2+), fragrance mix (1+)</p></div>
+                <div class="flex gap-2"><span class="status-badge completed">Reviewed</span><button class="text-accent"><i class="fas fa-download"></i></button></div>
+              </div>
+            </div>
+            <div class="mt-6 p-4 bg-hover rounded-2xl text-sm"><i class="fas fa-info-circle text-accent mr-2"></i> Results are for your information. Always discuss treatment options with your allergist.</div>
+          </div>
+        </div>
+
+        <!-- RESOURCES -->
+        <div id="resources" class="user-section hidden">
+          <div class="dashboard-card p-5 sm:p-7 reveal active">
+            <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-8 flex items-center gap-2"><span class="text-accent">📚</span> Patient Resources</h2>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl"><div class="flex items-center gap-3"><i class="fas fa-leaf text-accent text-lg"></i><span class="font-medium">Pollen Forecast & Alerts</span></div><span class="text-xs text-secondary-text">Daily updates</span></div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl"><div class="flex items-center gap-3"><i class="fas fa-utensils text-accent text-lg"></i><span class="font-medium">Food Allergy Action Plan</span></div><span class="text-xs text-secondary-text">PDF guide</span></div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl"><div class="flex items-center gap-3"><i class="fas fa-syringe text-accent text-lg"></i><span class="font-medium">Immunotherapy Patient Guide</span></div><span class="text-xs text-secondary-text">SCIT & SLIT</span></div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl"><div class="flex items-center gap-3"><i class="fas fa-video text-accent text-lg"></i><span class="font-medium">Video Library · Living with Allergies</span></div><span class="text-xs text-secondary-text">18 videos</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RULES & HOURS -->
+        <div id="rules" class="user-section hidden">
+          <div class="dashboard-card p-5 sm:p-7 reveal active">
+            <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-6 flex items-center gap-2"><span class="text-accent">⏰</span> Clinic Hours & Rules</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div><h3 class="font-semibold text-lg mb-2">Hours</h3><ul class="space-y-2 text-sm"><li class="flex justify-between border-b border-border py-2"><span>Mon – Fri</span><span class="font-medium">7:00 AM – 7:00 PM</span></li><li class="flex justify-between border-b border-border py-2"><span>Saturday</span><span class="font-medium">8:00 AM – 4:00 PM</span></li><li class="flex justify-between border-b border-border py-2"><span>Sunday</span><span class="font-medium">Closed</span></li></ul></div>
+              <div><h3 class="font-semibold text-lg mb-2">Patient Rules</h3><ul class="list-disc list-inside text-sm space-y-1 text-secondary-text"><li>Arrive 10 minutes before your appointment</li><li>Stop antihistamines 72 hours before skin testing</li><li>Bring your immunotherapy dose card to every visit</li><li>Report any reactions within 24 hours</li><li>Cancel or reschedule at least 24 hours in advance</li></ul></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div id="settings" class="user-section hidden">
+          <div class="dashboard-card p-5 sm:p-7 reveal active">
+            <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-8 flex items-center gap-2"><span class="text-accent">⚙️</span> Account Settings</h2>
+            <div class="space-y-6">
+              <div>
+                <h3 class="font-semibold text-lg mb-4 pb-2 border-b border-border">Profile Information</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div><label class="text-xs uppercase tracking-wider font-semibold text-secondary-text block mb-2">Full Name</label><input type="text" value="Olivia Park" class="w-full bg-hover border border-border rounded-xl px-4 py-3 text-primary-text"></div>
+                  <div><label class="text-xs uppercase tracking-wider font-semibold text-secondary-text block mb-2">Email</label><input type="email" value="olivia.park@email.com" class="w-full bg-hover border border-border rounded-xl px-4 py-3 text-primary-text"></div>
+                  <div><label class="text-xs uppercase tracking-wider font-semibold text-secondary-text block mb-2">Phone</label><input type="tel" value="(555) 123-4567" class="w-full bg-hover border border-border rounded-xl px-4 py-3 text-primary-text"></div>
+                  <div><label class="text-xs uppercase tracking-wider font-semibold text-secondary-text block mb-2">Patient ID</label><input type="text" value="PT-2024-0891" disabled class="w-full bg-hover border border-border rounded-xl px-4 py-3 text-secondary-text"></div>
+                </div>
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg mb-4 pb-2 border-b border-border">Notification Preferences</h3>
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between p-4 bg-hover rounded-xl"><div><p class="font-semibold">Appointment Reminders</p><p class="text-xs text-secondary-text">Get notified about upcoming visits</p></div><div class="w-12 h-6 bg-accent rounded-full p-1 cursor-pointer"><span class="block w-4 h-4 bg-white rounded-full ml-auto"></span></div></div>
+                  <div class="flex items-center justify-between p-4 bg-hover rounded-xl"><div><p class="font-semibold">Pollen & Mold Alerts</p><p class="text-xs text-secondary-text">Daily regional allergy forecast</p></div><div class="w-12 h-6 bg-accent rounded-full p-1 cursor-pointer"><span class="block w-4 h-4 bg-white rounded-full ml-auto"></span></div></div>
+                  <div class="flex items-center justify-between p-4 bg-hover rounded-xl"><div><p class="font-semibold">Test Result Notifications</p><p class="text-xs text-secondary-text">Alert when new results are available</p></div><div class="w-12 h-6 bg-accent rounded-full p-1 cursor-pointer"><span class="block w-4 h-4 bg-white rounded-full ml-auto"></span></div></div>
+                </div>
+              </div>
+              <div class="pt-4 flex gap-4"><button class="bg-accent-gradient text-white px-8 py-3 rounded-full text-xs font-semibold uppercase tracking-widest shadow-xl">Save Changes</button><button class="border border-border px-8 py-3 rounded-full text-xs font-semibold uppercase tracking-widest hover:bg-hover">Cancel</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOGOUT -->
+        <div id="logout" class="user-section hidden">
+          <div class="dashboard-card p-10 reveal active text-center max-w-lg mx-auto border-red-500/20">
+            <div class="w-20 h-20 mx-auto bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center text-red-500 text-3xl mb-6"><i class="fas fa-sign-out-alt"></i></div>
+            <h2 class="text-2xl font-serif font-semibold text-primary-text">Logout?</h2>
+            <p class="text-secondary-text mt-3 text-sm">Are you sure you want to end your session?</p>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="login.html"><button class="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-widest px-8 py-3 rounded-full text-[10px] transition shadow-lg">Logout</button></a>
+              <button onclick="activateSection('overview')" class="bg-hover border border-border px-8 py-3 rounded-full text-[10px] font-semibold uppercase tracking-widest transition">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SYSTEM STATUS / FOOTER -->
+        <div class="bg-accent-gradient rounded-3xl p-6 sm:p-8 mt-10 text-white reveal flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+          <div class="flex items-center gap-4 text-center sm:text-left"><span class="w-3 h-3 bg-white rounded-full animate-ping flex-shrink-0"></span><div><p class="font-semibold text-lg tracking-tighter uppercase">AllerCare Patient Portal</p><p class="text-xs text-white/70 italic">Secure access · real‑time results & schedules</p></div></div>
+          <div class="flex items-center gap-3"><span class="bg-white/20 backdrop-blur-md px-6 py-2.5 rounded-full text-[10px] font-semibold uppercase tracking-widest">HIPAA Compliant</span></div>
+        </div>
+        <footer class="mt-12 text-center text-[10px] text-secondary-text border-t border-border pt-8 pb-12 w-full">
+          <p class="uppercase tracking-[0.3em] font-semibold opacity-40">© 2026 AllerCare · Allergy Testing & Immunotherapy Clinic</p>
+          <div class="flex justify-center gap-8 mt-4 font-semibold uppercase opacity-60"><span class="hover:text-accent cursor-pointer transition">Privacy Policy</span><span class="hover:text-accent cursor-pointer transition">Terms of Use</span><span class="hover:text-accent cursor-pointer transition">Contact Support</span></div>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      'use strict';
+      const htmlEl = document.documentElement;
+
+      // ----- 1. MOBILE MENU -----
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const closeSidebar = document.getElementById('close-sidebar');
+      const sidebar = document.getElementById('sidebar-container');
+      const overlay = document.getElementById('mobile-overlay');
+      function toggleMobileMenu(isOpen) {
+        if (isOpen) { sidebar.classList.remove('-translate-x-full'); overlay.classList.add('active'); document.body.classList.toggle('overflow-hidden', isOpen); }
+        else { sidebar.classList.add('-translate-x-full'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+      }
+      if (menuToggle) menuToggle.addEventListener('click', () => toggleMobileMenu(true));
+      if (closeSidebar) closeSidebar.addEventListener('click', () => toggleMobileMenu(false));
+      if (overlay) overlay.addEventListener('click', () => toggleMobileMenu(false));
+
+      // ----- 2. THEME -----
+      const themeBtn = document.getElementById('theme-toggle-user');
+      function setTheme(theme) { htmlEl.setAttribute('data-theme', theme); localStorage.setItem('AllerCare_theme', theme); if (themeBtn) themeBtn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; }
+      const savedTheme = localStorage.getItem('AllerCare_theme') || 'light';
+      setTheme(savedTheme);
+      if (themeBtn) themeBtn.addEventListener('click', () => { const current = htmlEl.getAttribute('data-theme'); setTheme(current === 'light' ? 'dark' : 'light'); });
+
+      // ----- 3. RTL -----
+      const langBtn = document.getElementById('lang-toggle');
+      function setDirection(dir) { htmlEl.setAttribute('dir', dir); localStorage.setItem('AllerCare_lang', dir === 'rtl' ? 'ar' : 'en'); }
+      const savedLang = localStorage.getItem('AllerCare_lang') || 'en';
+      setDirection(savedLang === 'ar' ? 'rtl' : 'ltr');
+      if (langBtn) langBtn.addEventListener('click', () => { const currentDir = htmlEl.getAttribute('dir') || 'ltr'; setDirection(currentDir === 'ltr' ? 'rtl' : 'ltr'); });
+
+      // ----- 4. REVEAL -----
+      function checkReveal() { document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active'); }); }
+      window.addEventListener('scroll', checkReveal);
+      window.addEventListener('load', checkReveal);
+
+      // ----- 5. NAVIGATION -----
+      const sections = ['overview','bookings','immunotherapy','testing','results','resources','rules','settings','logout'];
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+      window.activateSection = function(sectionId) {
+        sections.forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('hidden'); });
+        const activeEl = document.getElementById(sectionId);
+        if (activeEl) { activeEl.classList.remove('hidden'); activeEl.classList.add('active'); }
+        sidebarLinks.forEach(link => { link.classList.remove('active'); if (link.dataset.section === sectionId) link.classList.add('active'); });
+        if (window.innerWidth < 1024) { toggleMobileMenu(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+      };
+      sidebarLinks.forEach(link => { link.addEventListener('click', function(e) { e.preventDefault(); const section = this.dataset.section; if (section) activateSection(section); }); });
+      activateSection('overview');
+    })();
+  </script>
+</body>
+</html>

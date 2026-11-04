@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found | AllerCare</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23EA580C%22/><path d=%22M50 22 L72 32 V52 C72 66 50 78 50 78 C50 78 28 66 28 52 V32 Z%22 fill=%22white%22/></svg>">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#EA580C',
+            primaryDark: '#C2410C',
+            primaryLight: '#FFEDD5',
+            accent: '#F97316',
+            accentDark: '#EA580C',
+            accentLight: '#FFF7ED',
+            secondary: '#0F172A',
+            darkGrey: '#1E293B',
+            medGreen: '#F97316'
+          },
+          fontFamily: {
+            'display': ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-secondary dark:bg-secondary dark:text-gray-100 transition-colors duration-300 antialiased overflow-x-hidden w-full max-w-full min-h-screen flex flex-col" dir="ltr">
+
+  <!-- TOP UTILITY BAR: LOGO + TOGGLES ONLY -->
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+
+    <!-- LOGO -->
+    <a href="index.html" class="flex items-center gap-2 sm:gap-3 shrink-0 group">
+      <span class="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-tr from-primary to-accent text-white shadow-md shadow-primary/20 group-hover:scale-105 transition-transform">
+        <i class="fas fa-shield-virus text-lg"></i>
+      </span>
+      <div class="leading-tight">
+        <span class="block text-lg sm:text-xl font-black tracking-tight text-secondary dark:text-white group-hover:text-primary transition-colors">
+          Aller<span class="text-primary">Care</span>
+        </span>
+        <span class="block text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-orange-700 dark:text-orange-400">
+          Testing & Immunotherapy
+        </span>
+      </div>
+    </a>
+
+    <!-- THEME + RTL TOGGLES -->
+    <div class="flex items-center gap-2 sm:gap-2.5">
+      <button id="themeToggle" title="Toggle Dark/Light Mode"
+        class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-primary hover:text-white dark:hover:bg-primary transition-all">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button id="rtlToggle" title="Switch text direction (RTL/LTR)"
+        class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-primary hover:text-white dark:hover:bg-primary transition-all">
+        <i class="fas fa-exchange-alt"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- 404 CONTENT -->
+  <main class="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <div class="w-full max-w-2xl text-center">
+
+      <!-- Decorative 404 -->
+      <div class="relative mb-6 sm:mb-8">
+        <span class="block text-[5.5rem] sm:text-[8rem] lg:text-[10rem] font-black leading-none tracking-tighter bg-gradient-to-br from-primary via-primaryDark to-accent dark:from-primaryLight dark:via-primary dark:to-accentLight bg-clip-text text-transparent select-none">
+          404
+        </span>
+        <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <i class="fas fa-shield-virus text-4xl sm:text-5xl lg:text-6xl text-primary/10 dark:text-primaryLight/10"></i>
+        </span>
+      </div>
+
+      <!-- Message -->
+      <h1 class="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-secondary dark:text-white mb-3">
+        Page Not Found
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-md mx-auto mb-8">
+        The page you're looking for may have been moved, renamed, or no longer exists. Let's get you back to a place where you can breathe easy.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primaryDark dark:bg-primary dark:hover:bg-primaryDark px-6 py-3 text-sm font-bold text-white shadow-lg shadow-primary/25 transition-all">
+          <i class="fas fa-house"></i>
+          Back to Home
+        </a>
+        <a href="contact.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border-2 border-primary/30 dark:border-primary/40 px-6 py-3 text-sm font-bold text-primary dark:text-primaryLight hover:bg-primary/5 dark:hover:bg-primary/10 transition-all">
+          <i class="fas fa-envelope"></i>
+          Contact Support
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- SCRIPT: THEME + RTL TOGGLES -->
+  <script>
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    const rtlToggle = document.getElementById('rtlToggle');
+
+    // Theme logic
+    function setTheme(isDark) {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun text-amber-400"></i>';
+      } else {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    }
+    themeToggle.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark')));
+    setTheme(localStorage.getItem('theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    // RTL logic
+    const savedDir = localStorage.getItem('dir') || 'ltr';
+    bodyEl.setAttribute('dir', savedDir);
+    rtlToggle.addEventListener('click', () => {
+      const currentDir = bodyEl.getAttribute('dir') || 'ltr';
+      const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+      bodyEl.setAttribute('dir', newDir);
+      localStorage.setItem('dir', newDir);
+    });
+  </script>
+
+</body>
+</html>

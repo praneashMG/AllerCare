@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AllerCare | Allergy Testing & Immunotherapy Clinic</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23EA580C%22/><path d=%22M50 22 L72 32 V52 C72 66 50 78 50 78 C50 78 28 66 28 52 V32 Z%22 fill=%22white%22/></svg>">
+  <meta name="description" content="Premier Allergy Testing & Immunotherapy Clinic. Specialized in skin prick testing, food allergy desensitization, sublingual & subcutaneous immunotherapy, and patient symptom management.">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="tailwind.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#EA580C',    // Clinical Teal 600
+            primaryDark: '#C2410C',// Deep Teal 700
+            primaryLight: '#FFEDD5',// Mint Ice Teal 100
+            accent: '#F97316',     // Medical Sky/Ocean Blue 600
+            accentDark: '#EA580C', // Ocean Blue 700
+            accentLight: '#FFF7ED',// Soft Sky Blue 100
+            secondary: '#0F172A',  // Clinical Slate 900
+            darkGrey: '#1E293B',   // Slate 800
+            medGreen: '#F97316'    // Emerald Relief
+          },
+          fontFamily: {
+            'display': ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+
+    [dir="rtl"] .rtl-flip {
+      transform: scaleX(-1);
+    }
+
+    #mobileMenu {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .glass-effect {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .dark .glass-effect {
+      background: rgba(15, 23, 42, 0.88);
+    }
+
+    .tab-active {
+      border-bottom: 2px solid #0D9488;
+      color: #0D9488;
+      font-weight: 700;
+    }
+
+    .dark .tab-active {
+      border-bottom: 2px solid #38BDF8;
+      color: #38BDF8;
+    }
+
+    /* Make HTML5 date picker calendar indicator visible in dark mode */
+    .dark input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1) brightness(1.2);
+      cursor: pointer;
+    }
+
+    .dark input[type="date"] {
+      color-scheme: dark;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-secondary dark:bg-secondary dark:text-gray-100 transition-colors duration-300 antialiased overflow-x-hidden w-full max-w-full" data-dir="ltr">
+
+  <!-- STICKY FIXED HEADER (Top Alert Bar + Navbar) -->
+  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 shadow-md backdrop-blur-md">
+    <!-- TOP CLINIC ALERT / EMERGENCY BAR -->
+  <div class="w-full bg-gradient-to-r from-orange-700 via-primary to-accent text-white py-1.5 sm:py-2 px-3 sm:px-4 overflow-hidden">
+    <div class="max-w-7xl mx-auto w-full">
+      <!-- Mobile Bar (< md: clean, compact, 100% responsive without overflow) -->
+      <div class="flex md:hidden items-center justify-between text-[11px] font-semibold gap-2 w-full">
+        <span class="flex items-center gap-1.5 truncate min-w-0">
+          <i class="fas fa-certificate text-amber-300 shrink-0"></i>
+          <span class="truncate">Board Certified Allergy Clinic</span>
+        </span>
+        <div class="flex items-center gap-2.5 shrink-0 text-[11px]">
+          <a href="tel:+18002553749" class="hover:underline flex items-center gap-1 whitespace-nowrap">
+            <i class="fas fa-phone-alt -scale-x-100 inline-block fa-flip-horizontal text-[9px]"></i> (800) ALLERGY-9
+          </a>
+          <span class="opacity-50">|</span>
+          <a href="login.html" class="hover:underline flex items-center gap-1 font-semibold whitespace-nowrap">
+            <i class="fas fa-user-circle"></i> Login
+          </a>
+        </div>
+      </div>
+
+      <!-- Desktop / Tablet Bar (md and up) -->
+      <div class="hidden md:flex items-center justify-between gap-4 text-xs w-full min-w-0">
+        <div class="flex items-center gap-2 min-w-0 truncate">
+          <span class="inline-flex items-center justify-center bg-white/20 px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider shrink-0">
+            <i class="fas fa-certificate mr-1.5 text-amber-300"></i> Board Certified
+          </span>
+          <span class="truncate text-xs">Accredited Allergy & Clinical Immunology Care <span class="hidden lg:inline">| Same-Day Skin Prick Test Results</span></span>
+        </div>
+        <div class="flex items-center gap-4 text-white/90 shrink-0 text-xs">
+          <a href="tel:+18002553749" class="hover:text-white transition flex items-center gap-1.5 whitespace-nowrap">
+            <i class="fas fa-phone-alt -scale-x-100 inline-block fa-flip-horizontal text-[10px]"></i> (800) ALLERGY-9
+          </a>
+          <span class="opacity-50">|</span>
+          <a href="login.html" class="hover:underline flex items-center gap-1 font-semibold whitespace-nowrap">
+            <i class="fas fa-user-circle"></i> Patient Portal Login
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <nav id="navbar" class="w-full transition-colors duration-300 bg-white/95 text-secondary border-b border-slate-200/80 dark:bg-secondary/95 dark:text-white dark:border-white/10 backdrop-blur-md shadow-sm">
+    <div class="w-full mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-6 py-2.5 sm:py-3 lg:px-8">
+      
+      <!-- LOGO & ICON -->
+      <a href="index.html" class="flex items-center gap-2 sm:gap-3 shrink-0 group">
+        <span class="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-gradient-to-tr from-primary to-accent text-white shadow-md shadow-primary/20 group-hover:scale-105 transition-transform">
+          <i class="fas fa-shield-virus text-base sm:text-xl"></i>
+        </span>
+        <div class="leading-tight">
+          <span class="block text-lg sm:text-xl font-black tracking-tight text-secondary dark:text-white group-hover:text-primary transition-colors">
+            Aller<span class="text-primary">Care</span>
+          </span>
+          <span class="block text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-orange-700 dark:text-orange-400">
+            Testing & Immunotherapy
+          </span>
+        </div>
+      </a>
+
+      <!-- DESKTOP NAV ITEMS -->
+      <div class="hidden xl:flex items-center gap-2">
+        <ul class="flex items-center gap-1 text-xs font-semibold">
+
+          <!-- 1. HOME DROPDOWN (Kept dropdown as requested) -->
+          <li class="relative group">
+            <button data-nav="home" class="home-trigger flex items-center gap-1.5 rounded-lg px-3 py-2 bg-primary text-white font-bold shadow-sm shadow-primary/25 hover:bg-primaryDark transition-all">
+              <i class="fas fa-home text-xs"></i>
+              <span>Home</span>
+              <i class="fas fa-chevron-down text-[9px] group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-48 rounded-xl bg-white border border-slate-200 dark:bg-darkGrey dark:border-white/10 p-2 opacity-0 shadow-2xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li>
+                <a href="index.html" class="block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-primary hover:text-white transition-colors">
+                  Home 1
+                </a>
+              </li>
+              <li>
+                <a href="homepage2.html" class="block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-primary hover:text-white transition-colors">
+                  Home 2
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- 2. SERVICES -->
+          <li>
+            <a data-nav="service" href="service.html" class="block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primaryLight hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+              Services
+            </a>
+          </li>
+
+          <!-- 3. DOCTORS (Changed nav heading) -->
+          <li>
+            <a data-nav="doctors" href="doctors.html" class="block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primaryLight hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+              Doctors
+            </a>
+          </li>
+
+          <!-- 4. BOOK TEST (Changed nav heading) -->
+          <li>
+            <a data-nav="booking" href="booking.html" class="block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primaryLight hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+              Book Test
+            </a>
+          </li>
+
+          <!-- 5. ABOUT (Kept same as requested) -->
+          <li>
+            <a data-nav="about" href="aboutus.html" class="block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primaryLight hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+              About
+            </a>
+          </li>
+
+          <!-- 6. CONTACT (Kept same as requested) -->
+          <li>
+            <a data-nav="contact" href="contact.html" class="block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primaryLight hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+              Contact
+            </a>
+          </li>
+
+          <!-- 7. DASHBOARD DROPDOWN (Kept same dropdown as requested with patient & admin options) -->
+          <li class="relative group">
+            <button data-nav="dashboard" class="flex items-center gap-1.5 rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primaryLight hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
+              <i class="fas fa-chart-line text-xs text-accent"></i>
+              <span>Dashboard</span>
+              <i class="fas fa-chevron-down text-[9px] group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-48 rounded-xl bg-white border border-slate-200 dark:bg-darkGrey dark:border-white/10 p-2 opacity-0 shadow-2xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li>
+                <a href="admin.html" class="block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-primary hover:text-white transition-colors">
+                  Admin Panel
+                </a>
+              </li>
+              <li>
+                <a href="user.html" class="block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-primary hover:text-white transition-colors">
+                  User Dashboard
+                </a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+
+        <!-- UTILITY CONTROLS & CTA BUTTONS -->
+        <div class="ml-3 flex items-center gap-2.5 border-l border-slate-200 dark:border-white/10 pl-3">
+          <!-- Dark Mode -->
+          <button id="themeToggleDesktop" title="Toggle Dark/Light Mode"
+            class="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 hover:bg-primary hover:text-white dark:hover:bg-primary transition-all text-slate-600 dark:text-slate-300">
+            <i class="fas fa-moon"></i>
+          </button>
+
+          <!-- RTL Direction Toggle -->
+          <button id="rtlToggleDesktop" title="Switch text direction (RTL/LTR)"
+            class="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 hover:bg-primary hover:text-white dark:hover:bg-primary transition-all text-slate-600 dark:text-slate-300">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+
+          <!-- Login Button -->
+          <a href="login.html"
+            class="inline-flex items-center gap-1.5 rounded-lg border border-primary text-primary px-3 py-1.5 text-xs font-bold hover:bg-primary hover:text-white transition-all active:scale-95">
+            <i class="fas fa-sign-in-alt text-[11px]"></i>
+            <span>Login</span>
+          </a>
+
+          <!-- Book Test CTA Button -->
+          <a href="booking.html"
+            class="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-accent px-3.5 py-1.5 text-xs font-bold text-white hover:opacity-95 transition-all shadow-md shadow-primary/20 active:scale-95">
+            <i class="fas fa-calendar-plus text-[11px]"></i>
+            <span>Book Appointment</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- MOBILE HAMBURGER BUTTON & THEME -->
+      <div class="flex items-center gap-2 sm:gap-2.5 xl:hidden">
+        <button id="themeToggleMobile" aria-label="Toggle Theme" class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 transition">
+          <i class="fas fa-moon text-xs sm:text-sm"></i>
+        </button>
+        <button id="hamburger" class="flex h-9 w-9 sm:h-10 sm:w-10 flex-col items-center justify-center gap-1 sm:gap-1.5 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-white/15 transition" aria-label="Toggle Menu">
+          <span id="line1" class="h-0.5 w-5 sm:w-6 bg-current transition-all duration-300"></span>
+          <span id="line2" class="h-0.5 w-5 sm:w-6 bg-current transition-all duration-300"></span>
+          <span id="line3" class="h-0.5 w-5 sm:w-6 bg-current transition-all duration-300"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- MOBILE MENU ACCORDION -->
+    <div id="mobileMenu" class="hidden absolute left-0 top-full w-full border-b border-slate-200 bg-white dark:bg-secondary dark:border-white/10 xl:hidden overflow-y-auto max-h-[calc(100vh-72px)] transition-all duration-300 shadow-2xl">
+      <div class="flex flex-col gap-1 p-4">
+        
+        <!-- Mobile Home Dropdown -->
+        <details class="group">
+          <summary data-nav-mobile="home" class="flex cursor-pointer items-center justify-between rounded-xl px-4 py-3 text-base font-medium list-none text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 transition">
+            <div class="flex items-center gap-3"><i class="fas fa-home text-primary w-5"></i><span>Home</span></div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-2 flex flex-col gap-1 pl-6 text-slate-600 dark:text-slate-300">
+            <a href="index.html" class="py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 hover:text-primary flex items-center gap-2">
+              <i class="fas fa-home text-primary text-xs"></i> Home 1
+            </a>
+            <a href="homepage2.html" class="py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 hover:text-primary flex items-center gap-2">
+              <i class="fas fa-home text-accent text-xs"></i> Home 2
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Services -->
+        <a data-nav-mobile="service" href="service.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">
+          <i class="fas fa-allergies text-primary w-5"></i> Services
+        </a>
+
+        <!-- Mobile Doctors -->
+        <a data-nav-mobile="doctors" href="doctors.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">
+          <i class="fas fa-user-md text-accent w-5"></i> Doctors & Immunologists
+        </a>
+
+        <!-- Mobile Book Test -->
+        <a data-nav-mobile="booking" href="booking.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">
+          <i class="fas fa-calendar-check text-medGreen w-5"></i> Book Appointment
+        </a>
+
+        <!-- Mobile About -->
+        <a data-nav-mobile="about" href="aboutus.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">
+          <i class="fas fa-clinic-medical text-primary w-5"></i> About Clinic
+        </a>
+
+        <!-- Mobile Contact -->
+        <a data-nav-mobile="contact" href="contact.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5">
+          <i class="fas fa-envelope text-accent w-5"></i> Contact & Location
+        </a>
+
+        <!-- Mobile Dashboard Dropdown -->
+        <details class="group">
+          <summary data-nav-mobile="dashboard" class="flex cursor-pointer items-center justify-between rounded-xl px-4 py-3 text-base font-semibold list-none hover:bg-slate-100 dark:hover:bg-white/5 transition">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-chart-line text-accent w-5"></i> <span>Dashboard</span>
+            </div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-2 flex flex-col gap-1 pl-6 text-slate-600 dark:text-slate-300">
+            <a href="admin.html" class="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-slate-100 dark:hover:bg-white/5 text-sm font-medium">
+              <i class="fas fa-user-shield text-gray-500"></i> Admin Panel
+            </a>
+            <a href="user.html" class="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-slate-100 dark:hover:bg-white/5 text-sm font-medium">
+              <i class="fas fa-user text-primary"></i> User Dashboard
+            </a>
+          </div>
+        </details>
+
+        <!-- Mobile Bottom Utilities & Actions -->
+        <div class="mt-4 pt-4 border-t border-slate-200 dark:border-white/10 flex flex-col gap-3">
+          <button id="rtlToggleMobile" class="flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-200">
+            <span class="flex items-center gap-3"><i class="fas fa-exchange-alt text-primary"></i> Text Direction (LTR / RTL)</span>
+            <span class="text-xs font-bold text-primary">Toggle</span>
+          </button>
+
+          <div class="grid grid-cols-2 gap-3 mt-1">
+            <a href="login.html" class="flex items-center justify-center gap-2 rounded-xl border border-primary py-3 text-sm font-bold text-primary hover:bg-primary hover:text-white transition">
+              <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+            <a href="booking.html" class="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-accent py-3 text-sm font-bold text-white shadow-md shadow-primary/20">
+              <i class="fas fa-calendar-plus"></i> Book Appointment
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+  </header>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="w-full min-h-screen pt-[84px] sm:pt-[90px]">
+<!-- ============================================================ -->
+<!-- SECTION 1: BOOKING HERO / INTRODUCTION                       -->
+<!-- ============================================================ -->
+<section class="relative overflow-hidden bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+      <!-- Text Content -->
+      <div class="text-center lg:text-left">
+        <span class="inline-flex items-center gap-2 rounded-full bg-orange-100 dark:bg-orange-900/40 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-orange-700 dark:text-orange-300 mb-3 sm:mb-4">
+          <i class="fas fa-calendar-check text-orange-600 dark:text-orange-400"></i>
+          Online Appointment Booking
+        </span>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight mb-3">
+          Book Your Allergy
+          <span class="block mt-1 text-orange-600 dark:text-orange-400">
+            Test or Consultation
+          </span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-5 max-w-lg mx-auto lg:mx-0">
+          Schedule your visit in under two minutes. Choose your test, pick a specialist, and select a time that works for you—we'll confirm your appointment by email and text.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8">
+          <a href="#booking-form" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-orange-600 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-orange-600/25 transition-all">
+            <i class="fas fa-calendar-plus"></i>
+            Start Booking
+          </a>
+          <a href="tel:+18002553749" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border-2 border-orange-600/30 dark:border-orange-400/30 px-7 py-3.5 text-sm font-bold text-orange-700 dark:text-orange-300 hover:bg-orange-50 dark:hover:bg-orange-900/30 transition-all">
+            <i class="fas fa-phone"></i>
+            Call (800) 255-3749
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3 text-sm text-slate-500 dark:text-slate-400">
+          <span class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> No Referral Needed</span>
+          <span class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Same-Day Testing</span>
+          <span class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Insurance Accepted</span>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="relative max-w-lg mx-auto lg:max-w-none w-full">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-orange-600/15 dark:shadow-black/40">
+          <img
+            src="assets/ff1.jpg"
+            alt="Patient booking an allergy test appointment with a clinic coordinator"
+            class="w-full h-[300px] sm:h-[380px] lg:h-[460px] object-cover"
+            loading="eager"
+          />
+        </div>
+
+        
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 2: BOOKING FORM — MAIN CONVERSION SECTION            -->
+<!-- ============================================================ -->
+<section id="booking-form" class="py-14 sm:py-20 lg:py-24 bg-white dark:bg-slate-900">
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-orange-600 dark:text-orange-400 mb-3">
+        <i class="fas fa-calendar-plus mr-1.5"></i> Schedule Your Visit
+      </span>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
+        Complete Your Booking
+      </h2>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        Fill in your details below. Our clinic coordinator will confirm your appointment within one business day.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-8 lg:gap-10 items-start">
+
+      <!-- Form Column (3/5) -->
+      <div class="lg:col-span-3 w-full">
+        <form onsubmit="handleBookingSubmit(event)" class="rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 sm:p-8 shadow-sm space-y-6">
+
+          <!-- Step 1: Patient Details -->
+          <div>
+            <div class="flex items-center gap-3 mb-5">
+              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-orange-600 text-white text-sm font-bold shrink-0">1</span>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Patient Details</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">First Name <span class="text-rose-500">*</span></label>
+                <input type="text" required placeholder="Jane" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Last Name <span class="text-rose-500">*</span></label>
+                <input type="text" required placeholder="Doe" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Email Address <span class="text-rose-500">*</span></label>
+                <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Phone Number <span class="text-rose-500">*</span></label>
+                <input type="tel" required placeholder="(555) 123-4567" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Date of Birth</label>
+                <input type="date" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Patient Type</label>
+                <select class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition">
+                  <option>New Patient</option>
+                  <option>Returning Patient</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-slate-200 dark:bg-slate-700"></div>
+
+          <!-- Step 2: Appointment Details -->
+          <div>
+            <div class="flex items-center gap-3 mb-5">
+              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-orange-600 text-white text-sm font-bold shrink-0">2</span>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Appointment Details</h3>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Service Type <span class="text-rose-500">*</span></label>
+                <select required class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition">
+                  <option value="">Select a service...</option>
+                  <option>Skin Prick Testing (40 Allergens)</option>
+                  <option>Specific IgE Blood Testing</option>
+                  <option>Patch Testing (Contact Dermatitis)</option>
+                  <option>Oral Food Challenge</option>
+                  <option>Spirometry & Lung Function</option>
+                  <option>Venom Allergy Testing</option>
+                  <option>SCIT (Allergy Shots) Consultation</option>
+                  <option>SLIT (Under-Tongue Drops) Consultation</option>
+                  <option>General Allergy Consultation</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Preferred Specialist</label>
+                <select class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition">
+                  <option>No Preference — First Available</option>
+                  <option>Dr. Sarah Mitchell, MD — Food & Pediatric</option>
+                  <option>Dr. James Rodriguez, MD — Immunotherapy</option>
+                  <option>Dr. Emily Chen, MD — Pediatric</option>
+                  <option>Dr. Michael Okafor, MD — Immunology</option>
+                  <option>Dr. Priya Sharma, MD — Asthma</option>
+                  <option>Dr. David Kim, MD — Contact Dermatitis</option>
+                </select>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Preferred Date <span class="text-rose-500">*</span></label>
+                  <input type="date" required class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Preferred Time <span class="text-rose-500">*</span></label>
+                  <select required class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition">
+                    <option value="">Select a time...</option>
+                    <option>8:00 AM – 10:00 AM</option>
+                    <option>10:00 AM – 12:00 PM</option>
+                    <option>12:00 PM – 2:00 PM</option>
+                    <option>2:00 PM – 4:00 PM</option>
+                    <option>4:00 PM – 6:00 PM</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Reason for Visit / Symptoms</label>
+                <textarea rows="3" placeholder="Briefly describe your symptoms, triggers, or reason for your visit..." class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition resize-none"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-slate-200 dark:bg-slate-700"></div>
+
+          <!-- Step 3: Confirmation -->
+          <div>
+            <div class="flex items-center gap-3 mb-5">
+              <span class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-600 text-white text-sm font-bold shrink-0">3</span>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Confirm & Submit</h3>
+            </div>
+            <label class="flex items-start gap-3 cursor-pointer mb-5">
+              <input type="checkbox" required class="mt-1 rounded text-orange-600 focus:ring-orange-500" />
+              <span class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                I consent to being contacted by AllerCare Clinic regarding my appointment and confirm that the information provided is accurate. I understand that this is a booking request and my appointment will be confirmed by clinic staff.
+              </span>
+            </label>
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-orange-600 hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-600 px-6 py-4 text-sm font-bold text-white shadow-lg shadow-orange-600/25 transition-all">
+              <i class="fas fa-calendar-check"></i>
+              Submit Booking Request
+            </button>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-3 text-center flex items-center justify-center gap-1.5">
+              <i class="fas fa-lock text-orange-600 dark:text-orange-400"></i>
+              HIPAA-compliant. Your information is secure and never shared.
+            </p>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Sidebar (2/5) -->
+      <div class="lg:col-span-2 space-y-6 w-full">
+
+        <!-- What to Expect Card -->
+        <div class="rounded-2xl bg-gradient-to-br from-orange-700 via-orange-600 to-orange-600 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 p-6 sm:p-7 text-white shadow-lg">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm shrink-0">
+              <i class="fas fa-list-check"></i>
+            </span>
+            <h3 class="text-base font-bold">What to Expect</h3>
+          </div>
+          <ul class="space-y-3.5">
+            <li class="flex items-start gap-2.5 text-xs">
+              <i class="fas fa-circle-check text-orange-200 mt-0.5 shrink-0"></i>
+              <span class="text-white/90">Confirmation email with appointment details within 1 business day</span>
+            </li>
+            <li class="flex items-start gap-2.5 text-xs">
+              <i class="fas fa-circle-check text-orange-200 mt-0.5 shrink-0"></i>
+              <span class="text-white/90">Pre-visit instructions, including antihistamine guidance</span>
+            </li>
+            <li class="flex items-start gap-2.5 text-xs">
+              <i class="fas fa-circle-check text-orange-200 mt-0.5 shrink-0"></i>
+              <span class="text-white/90">Same-day skin prick results during your visit</span>
+            </li>
+            <li class="flex items-start gap-2.5 text-xs">
+              <i class="fas fa-circle-check text-orange-200 mt-0.5 shrink-0"></i>
+              <span class="text-white/90">A personalized treatment plan before you leave</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Clinic Hours Card -->
+        <div class="rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/50 text-orange-600 dark:text-orange-400 shrink-0">
+              <i class="fas fa-clock"></i>
+            </span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Clinic Hours</h3>
+          </div>
+          <ul class="space-y-2.5 text-xs">
+            <li class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Monday – Thursday</span><span class="font-bold text-slate-900 dark:text-white">8:00 AM – 6:00 PM</span></li>
+            <li class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Friday</span><span class="font-bold text-slate-900 dark:text-white">8:00 AM – 5:00 PM</span></li>
+            <li class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Saturday</span><span class="font-bold text-slate-900 dark:text-white">9:00 AM – 2:00 PM</span></li>
+            <li class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Sunday</span><span class="font-bold text-rose-500 dark:text-rose-400">Closed</span></li>
+          </ul>
+          <div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+            <div class="flex items-center gap-2 text-xs">
+              <i class="fas fa-phone text-orange-600 dark:text-orange-400"></i>
+              <span class="font-bold text-slate-900 dark:text-white">(800) 255-3749</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insurance Card -->
+        <div class="rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 shrink-0">
+              <i class="fas fa-shield-halved"></i>
+            </span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Insurance Accepted</h3>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            We accept most major insurance plans. Our team will verify your benefits before your appointment.
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="rounded-full bg-slate-100 dark:bg-slate-700 px-2.5 py-1 text-[10px] font-bold text-slate-700 dark:text-slate-300">BlueCross</span>
+            <span class="rounded-full bg-slate-100 dark:bg-slate-700 px-2.5 py-1 text-[10px] font-bold text-slate-700 dark:text-slate-300">Aetna</span>
+            <span class="rounded-full bg-slate-100 dark:bg-slate-700 px-2.5 py-1 text-[10px] font-bold text-slate-700 dark:text-slate-300">Cigna</span>
+            <span class="rounded-full bg-slate-100 dark:bg-slate-700 px-2.5 py-1 text-[10px] font-bold text-slate-700 dark:text-slate-300">United</span>
+            <span class="rounded-full bg-slate-100 dark:bg-slate-700 px-2.5 py-1 text-[10px] font-bold text-slate-700 dark:text-slate-300">Medicare</span>
+          </div>
+        </div>
+
+        <!-- Pre-Appointment Preparation Card -->
+        <div class="rounded-2xl bg-amber-50/70 dark:bg-slate-800 border border-amber-200/80 dark:border-amber-900/40 p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-400 shrink-0">
+              <i class="fas fa-triangle-exclamation"></i>
+            </span>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Important Pre-Visit Tip</h3>
+              <span class="text-[11px] font-semibold text-amber-700 dark:text-amber-400">Before Your Appointment</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+            Please discontinue oral antihistamines <strong>5–7 days prior</strong> to allergy skin testing so test readings remain accurate and clear.
+          </p>
+          <div class="flex items-center gap-2 pt-3 border-t border-amber-200/60 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-400">
+            <i class="fas fa-circle-info text-amber-600 dark:text-amber-400 shrink-0"></i>
+            <span>Questions? Call our nursing triage team anytime.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 3: APPOINTMENT TYPES — CARD GRID                     -->
+<!-- ============================================================ -->
+<section class="py-14 sm:py-20 lg:py-24 bg-slate-50 dark:bg-slate-800/50">
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-orange-600 dark:text-orange-400 mb-3">
+        <i class="fas fa-layer-group mr-1.5"></i> Appointment Types
+      </span>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
+        Choose the Right Visit for You
+      </h2>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        Whether you need a quick diagnostic test or a comprehensive immunotherapy consultation, we offer appointment types designed for every stage of your allergy journey.
+      </p>
+    </div>
+
+    <!-- Appointment Type Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1 -->
+      <div class="group rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 hover:shadow-lg hover:border-orange-300 dark:hover:border-orange-700 transition-all flex flex-col">
+        <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 mb-4">
+          <i class="fas fa-vial text-xl"></i>
+        </span>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Allergy Testing Visit</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4 flex-grow">
+          A focused appointment for skin prick, patch, or IgE blood testing. Results available the same day for most tests.
+        </p>
+        <div class="flex items-center justify-between text-xs pt-3 border-t border-slate-200 dark:border-slate-700">
+          <span class="font-bold text-slate-900 dark:text-white">45–60 min</span>
+          <span class="text-orange-600 dark:text-orange-400 font-bold">From $180</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 hover:shadow-lg hover:border-orange-300 dark:hover:border-orange-700 transition-all flex flex-col">
+        <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/50 text-orange-600 dark:text-orange-400 mb-4">
+          <i class="fas fa-user-doctor text-xl"></i>
+        </span>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Comprehensive Consultation</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4 flex-grow">
+          An in-depth visit with a board-certified allergist to review your history, symptoms, and treatment options.
+        </p>
+        <div class="flex items-center justify-between text-xs pt-3 border-t border-slate-200 dark:border-slate-700">
+          <span class="font-bold text-slate-900 dark:text-white">60–90 min</span>
+          <span class="text-orange-600 dark:text-orange-400 font-bold">From $250</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="group rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 hover:shadow-lg hover:border-emerald-300 dark:hover:border-emerald-700 transition-all flex flex-col">
+        <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 mb-4">
+          <i class="fas fa-syringe text-xl"></i>
+        </span>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Immunotherapy Visit</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4 flex-grow">
+          Your scheduled allergy shot administration or SLIT check-in, with the required 30-minute observation period.
+        </p>
+        <div class="flex items-center justify-between text-xs pt-3 border-t border-slate-200 dark:border-slate-700">
+          <span class="font-bold text-slate-900 dark:text-white">30–45 min</span>
+          <span class="text-emerald-600 dark:text-emerald-400 font-bold">Covered by most plans</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 4: PREPARATION GUIDE — NUMBERED STEPS                -->
+<!-- ============================================================ -->
+<section class="py-14 sm:py-20 lg:py-24 bg-white dark:bg-slate-900">
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-orange-600 dark:text-orange-400 mb-3">
+        <i class="fas fa-clipboard-list mr-1.5"></i> Before Your Visit
+      </span>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
+        How to Prepare for Your Appointment
+      </h2>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        A few simple steps before your visit help ensure accurate test results and a smooth experience. Please review our preparation guidance.
+      </p>
+    </div>
+
+    <!-- Preparation Steps Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="relative rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 flex flex-col h-full justify-between">
+        <span class="absolute -top-3 -left-3 flex h-8 w-8 items-center justify-center rounded-full bg-orange-600 text-white text-sm font-black shadow-md">1</span>
+        <div>
+          <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 mb-4 mt-2">
+            <i class="fas fa-pills text-xl"></i>
+          </span>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Pause Antihistamines</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Avoid oral antihistamines for 3 to 7 days before skin prick testing for accurate diagnostic results.</p>
+        </div>
+      </div>
+
+      <div class="relative rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 flex flex-col h-full justify-between">
+        <span class="absolute -top-3 -left-3 flex h-8 w-8 items-center justify-center rounded-full bg-orange-600 text-white text-sm font-black shadow-md">2</span>
+        <div>
+          <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/50 text-orange-600 dark:text-orange-400 mb-4 mt-2">
+            <i class="fas fa-shirt text-xl"></i>
+          </span>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Wear Comfortable Clothes</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Choose short-sleeved shirts or loose clothing for quick and comfortable diagnostic access to both arms.</p>
+        </div>
+      </div>
+
+      <div class="relative rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 flex flex-col h-full justify-between">
+        <span class="absolute -top-3 -left-3 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white text-sm font-black shadow-md">3</span>
+        <div>
+          <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 mb-4 mt-2">
+            <i class="fas fa-file-medical text-xl"></i>
+          </span>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Bring Medical Records</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Bring prior allergy test reports, current medication lists, and your insurance card for expedited intake.</p>
+        </div>
+      </div>
+
+      <div class="relative rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 flex flex-col h-full justify-between">
+        <span class="absolute -top-3 -left-3 flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-white text-sm font-black shadow-md">4</span>
+        <div>
+          <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 mb-4 mt-2">
+            <i class="fas fa-utensils text-xl"></i>
+          </span>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Eat Nutritious Meals</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Have a light, nutritious meal and stay well hydrated before arriving for allergy prick or patch testing.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-8 rounded-2xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 p-5 flex items-start gap-3">
+      <i class="fas fa-triangle-exclamation text-amber-600 dark:text-amber-400 text-lg mt-0.5 shrink-0"></i>
+      <div>
+        <div class="text-sm font-bold text-amber-900 dark:text-amber-200 mb-1">Important: Asthma Medications</div>
+        <p class="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">Do not stop any asthma or blood pressure medications without consulting your physician first. Our team will provide specific instructions when confirming your appointment.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 5: WHY BOOK WITH US — BENEFIT HIGHLIGHTS             -->
+<!-- ============================================================ -->
+<section class="py-14 sm:py-20 lg:py-24 bg-slate-50 dark:bg-slate-800/50">
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-orange-600 dark:text-orange-400 mb-3">
+        <i class="fas fa-star-of-life mr-1.5"></i> Why Book With AllerCare
+      </span>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
+        A Booking Experience as Thoughtful as Our Care
+      </h2>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        From your first click to your follow-up visit, we've designed every step to be simple, transparent, and patient-first.
+      </p>
+    </div>
+
+    <!-- Benefit Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 text-center hover:shadow-lg transition-all flex flex-col justify-between h-full">
+        <div>
+          <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 mx-auto mb-4">
+            <i class="fas fa-bolt text-2xl"></i>
+          </span>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Fast Confirmation</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Appointments confirmed within one business day via instant SMS and patient portal notification.</p>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 text-center hover:shadow-lg transition-all flex flex-col justify-between h-full">
+        <div>
+          <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 dark:bg-amber-900/50 text-orange-600 dark:text-orange-400 mx-auto mb-4">
+            <i class="fas fa-user-doctor text-2xl"></i>
+          </span>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Board Specialists</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Select fellowship-trained allergists and clinical immunologists tailored to your specific diagnostic requirements.</p>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 text-center hover:shadow-lg transition-all flex flex-col justify-between h-full">
+        <div>
+          <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 mx-auto mb-4">
+            <i class="fas fa-shield-halved text-2xl"></i>
+          </span>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Insurance Verified</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">We verify coverage and copay details before testing to eliminate unexpected clinical billing charges.</p>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 text-center hover:shadow-lg transition-all flex flex-col justify-between h-full">
+        <div>
+          <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 mx-auto mb-4">
+            <i class="fas fa-mobile-screen-button text-2xl"></i>
+          </span>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Easy Rescheduling</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">Change, reschedule, or cancel test dates anytime directly through your 24/7 patient portal dashboard.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 6: FINAL CTA — CALL OR WALK-IN                       -->
+<!-- ============================================================ -->
+<section class="relative overflow-hidden py-14 sm:py-20 lg:py-24 bg-gradient-to-br from-orange-700 via-orange-600 to-orange-600 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-20 -right-20 h-64 w-64 sm:h-80 sm:w-80 rounded-full bg-white/10 blur-3xl"></div>
+    <div class="absolute -bottom-24 -left-24 h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-white/10 blur-3xl"></div>
+  </div>
+
+  <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+      <!-- CTA Content -->
+      <div class="text-center lg:text-left">
+        <span class="inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur-sm px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white mb-5">
+          <i class="fas fa-headset text-orange-200"></i>
+          Need Help Booking?
+        </span>
+
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight mb-5">
+          Prefer to Book
+          <span class="block mt-1 text-orange-200">Over the Phone?</span>
+        </h2>
+
+        <p class="text-sm sm:text-base text-white/85 leading-relaxed mb-7 max-w-xl mx-auto lg:mx-0">
+          Our clinic coordinators are available during business hours to help you schedule, answer insurance questions, and prepare for your visit. Walk-in allergy testing is also available on weekdays.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4">
+          <a href="tel:+18002553749" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-white text-orange-700 px-7 py-3.5 text-sm font-bold shadow-lg hover:bg-orange-50 transition-all">
+            <i class="fas fa-phone"></i>
+            Call (800) 255-3749
+          </a>
+          <a href="contact.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/40 px-7 py-3.5 text-sm font-bold text-white hover:bg-white/10 hover:border-white/60 transition-all">
+            <i class="fas fa-envelope"></i>
+            Contact Our Clinic
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 mt-7 text-xs text-white/70">
+          <span class="flex items-center gap-1.5"><i class="fas fa-shield-halved text-orange-200"></i> HIPAA Compliant</span>
+          <span class="flex items-center gap-1.5"><i class="fas fa-clock text-orange-200"></i> Same-Day Results</span>
+          <span class="flex items-center gap-1.5"><i class="fas fa-user-check text-orange-200"></i> Board-Certified</span>
+        </div>
+      </div>
+
+      <!-- CTA Image -->
+      <div class="relative max-w-lg mx-auto lg:max-w-none w-full">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
+          <img
+            src="assets/ff2.jpg"
+            alt="Clinic coordinator assisting a patient with appointment scheduling by phone"
+            class="w-full h-[280px] sm:h-[360px] lg:h-[420px] object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-orange-900/40 to-transparent"></div>
+        </div>
+
+        <div class="absolute -bottom-5 -right-3 sm:-right-5 rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-xl border border-slate-100 dark:border-slate-700">
+          <div class="flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 shrink-0">
+              <i class="fas fa-phone-volume"></i>
+            </span>
+            <div>
+              <div class="text-sm font-bold text-slate-900 dark:text-white">Same-Day Booking</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400">Available Weekdays</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BOOKING CONFIRMATION SCRIPT                                  -->
+<!-- ============================================================ -->
+<script>
+  function handleBookingSubmit(e) {
+    e.preventDefault();
+    alert('Thank you! Your booking request has been received. Our clinic coordinator will confirm your appointment within one business day. A confirmation email and pre-visit instructions will be sent shortly.');
+    e.target.reset();
+  }
+</script>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-secondary pt-16 pb-10 text-white border-t border-white/10 overflow-hidden">
+    <div class="w-full mx-auto max-w-7xl px-4 lg:px-8">
+      
+      <!-- Top Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 border-b border-white/10 pb-12">
+
+        <!-- Col 1: Clinic Brand & Mission -->
+        <div>
+          <a href="index.html" class="flex items-center gap-3 mb-6">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-tr from-primary to-accent text-white shadow-lg shadow-primary/30">
+              <i class="fas fa-shield-virus text-lg"></i>
+            </span>
+            <div class="leading-tight">
+              <span class="block text-xl font-black tracking-tight text-white">Aller<span class="text-primary">Care</span></span>
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-orange-400">Testing & Immunotherapy</span>
+            </div>
+          </a>
+          <p class="text-slate-400 text-xs leading-relaxed mb-6">
+            Providing comprehensive allergy diagnostics, rapid skin prick testing, food allergy management, and desensitization immunotherapy (SCIT shots & SLIT drops) for children and adults.
+          </p>
+          <div class="flex gap-3">
+            <a href="#" aria-label="LinkedIn" class="h-9 w-9 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-xs">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="h-9 w-9 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-xs">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" aria-label="Facebook" class="h-9 w-9 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-xs">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" aria-label="X Twitter" class="h-9 w-9 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-xs">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation & Services -->
+        <div>
+          <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-xs">Clinical Navigation</h4>
+          <ul class="space-y-3 text-xs text-slate-400">
+            <li><a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1.5"><i class="fas fa-chevron-right text-[9px] text-primary"></i> Allergy Relief Home</a></li>
+            <li><a href="service.html" class="hover:text-primary transition-colors flex items-center gap-1.5"><i class="fas fa-chevron-right text-[9px] text-primary"></i> Skin Prick Testing (40 Inhalants)</a></li>
+            <li><a href="service.html" class="hover:text-primary transition-colors flex items-center gap-1.5"><i class="fas fa-chevron-right text-[9px] text-primary"></i> Food Allergy & Oral Challenge</a></li>
+            <li><a href="user.html" class="hover:text-primary transition-colors flex items-center gap-1.5"><i class="fas fa-chevron-right text-[9px] text-primary"></i> Patient Portal & Immunotherapy Tracker</a></li>
+            <li><a href="doctors.html" class="hover:text-primary transition-colors flex items-center gap-1.5"><i class="fas fa-chevron-right text-[9px] text-primary"></i> Board-Certified Immunologists</a></li>
+            <li><a href="aboutus.html" class="hover:text-primary transition-colors flex items-center gap-1.5"><i class="fas fa-chevron-right text-[9px] text-primary"></i> About Our Clinic</a></li>
+            <li><a href="contact.html" class="hover:text-primary transition-colors flex items-center gap-1.5"><i class="fas fa-chevron-right text-[9px] text-primary"></i> Contact & Emergency Info</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Contact & Hours -->
+        <div>
+          <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-xs">Clinic Contact</h4>
+          <div class="space-y-4 text-xs">
+            <div class="flex items-start gap-3">
+              <div class="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="text-slate-400">
+                AllerCare Immunology Pavilion<br>
+                Suite 450, 742 Evergreen Pkwy<br>
+                San Francisco, CA 94107
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent shrink-0">
+                <i class="fas fa-phone-alt -scale-x-100 inline-block fa-flip-horizontal"></i>
+              </div>
+              <div class="text-slate-400">(800) 255-3749 (Appointments)</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-medGreen/10 flex items-center justify-center text-medGreen shrink-0">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="text-slate-400">care@allercare-clinic.com</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 4: Pollen Alert Newsletter -->
+        <div>
+          <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-xs">Pollen Forecast Alerts</h4>
+          <p class="text-slate-400 text-xs mb-4">
+            Receive daily regional pollen spike warnings, mold advisories, and immunotherapy clinic schedule updates directly to your inbox.
+          </p>
+          <form onsubmit="handleNewsletter(event)" class="space-y-3">
+            <input type="email" required placeholder="Enter your email"
+              class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 focus:border-primary focus:outline-none text-white text-xs">
+            <button type="submit"
+              class="w-full bg-gradient-to-r from-primary to-accent text-white font-bold py-2.5 rounded-xl hover:opacity-90 transition-all text-xs shadow-md">
+              Subscribe to Pollen Alerts
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Bottom Row -->
+      <div class="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
+        <div>© 2026 AllerCare Allergy Testing & Immunotherapy Clinic. All rights reserved.</div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-primary transition-colors">HIPAA Privacy Notice</a>
+          <a href="#" class="hover:text-primary transition-colors">Patient Rights & Consent</a>
+          <a href="#" class="hover:text-primary transition-colors">Anaphylaxis Protocols</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- PATIENT LOGIN PORTAL MODAL -->
+  <div id="loginModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm">
+    <div class="bg-white dark:bg-darkGrey rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 dark:border-white/10 shadow-2xl relative space-y-6">
+      
+      <button onclick="closeModal('loginModal')" class="absolute top-5 right-5 text-gray-400 hover:text-slate-800 dark:hover:text-white transition">
+        <i class="fas fa-times text-lg"></i>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-md">
+          <i class="fas fa-lock"></i>
+        </span>
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Patient Portal Login</h3>
+          <p class="text-xs text-gray-500">Access your allergy test results & immunotherapy schedule</p>
+        </div>
+      </div>
+
+      <!-- Login / Register Switch Tabs -->
+      <div class="flex border-b border-slate-200 dark:border-white/10 text-xs font-bold">
+        <button id="modalTabLogin" onclick="switchLoginModalTab('login')" class="flex-1 py-2 text-primary border-b-2 border-primary">
+          Existing Patient
+        </button>
+        <button id="modalTabRegister" onclick="switchLoginModalTab('register')" class="flex-1 py-2 text-gray-400 hover:text-slate-700 dark:hover:text-slate-200">
+          New Patient Registration
+        </button>
+      </div>
+
+      <!-- Login Form Body -->
+      <form id="portalLoginForm" onsubmit="handlePortalLogin(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email or Patient ID</label>
+          <input type="text" required value="sarah.jenkins@allercare-patient.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-slate-800 text-xs text-slate-800 dark:text-white focus:border-primary focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Password</label>
+          <div class="relative">
+            <input id="loginPassword" type="password" required value="••••••••••••" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-white/10 bg-slate-50 dark:bg-slate-800 text-xs text-slate-800 dark:text-white focus:border-primary focus:outline-none">
+            <button type="button" onclick="togglePasswordVisibility('loginPassword')" class="absolute right-3 top-2.5 text-gray-400 text-xs">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs">
+          <label class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-400">
+            <input type="checkbox" checked class="rounded text-primary focus:ring-0">
+            <span>Remember me</span>
+          </label>
+          <a href="javascript:void(0)" onclick="alert('Password reset instructions sent to registered phone/email.')" class="text-primary hover:underline">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-primary hover:bg-primaryDark text-white font-bold text-xs shadow-md shadow-primary/20 transition">
+          Log In to Patient Dashboard
+        </button>
+
+        <div class="p-3 rounded-xl bg-orange-50 dark:bg-orange-950/40 text-[11px] text-orange-800 dark:text-orange-300 flex items-center gap-2">
+          <i class="fas fa-info-circle text-primary"></i>
+          <span>HIPAA & HITECH Compliant 256-bit encrypted healthcare portal.</span>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- CLINIC ADMIN DEMO MODAL -->
+  <div id="adminDemoModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm">
+    <div class="bg-white dark:bg-darkGrey rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-slate-200 dark:border-white/10 shadow-2xl relative space-y-4">
+      <button onclick="closeModal('adminDemoModal')" class="absolute top-5 right-5 text-gray-400 hover:text-slate-800 dark:hover:text-white transition">
+        <i class="fas fa-times text-lg"></i>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-white">
+          <i class="fas fa-user-shield"></i>
+        </span>
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">AllerCare Clinic Administration</h3>
+          <p class="text-xs text-gray-500">Physician triage queue & antigen compounding inventory</p>
+        </div>
+      </div>
+
+      <div class="space-y-3 pt-2 text-xs">
+        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
+          <div>
+            <div class="font-bold">Today's Skin Prick Tests</div>
+            <div class="text-[11px] text-gray-500">18 Scheduled (6 Completed, 12 Pending)</div>
+          </div>
+          <span class="px-2 py-1 rounded bg-orange-100 text-orange-800 font-bold text-[10px]">Normal Capacity</span>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
+          <div>
+            <div class="font-bold">Sterile Antigen Vials in Lab</div>
+            <div class="text-[11px] text-gray-500">USP &lt;797&gt; Certified Batch #2026-X4</div>
+          </div>
+          <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Optimal</span>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800">
+          <div>
+            <div class="font-bold">Epinephrine & Rescue Stations</div>
+            <div class="text-[11px] text-gray-500">All 6 clinical triage stations checked</div>
+          </div>
+          <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Verified</span>
+        </div>
+      </div>
+
+      <button onclick="closeModal('adminDemoModal')" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs transition">
+        Close Admin Overview
+      </button>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC (Menu, Theme, RTL, Dashboard Tabs, Booking, Calculator) -->
+  <script>
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const l1 = document.getElementById('line1');
+    const l2 = document.getElementById('line2');
+    const l3 = document.getElementById('line3');
+
+    // Menu Toggle Logic
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        if (!isHidden) {
+          l1.style.transform = 'translateY(8px) rotate(45deg)';
+          l2.style.opacity = '0';
+          l3.style.transform = 'translateY(-8px) rotate(-45deg)';
+        } else {
+          l1.style.transform = 'none';
+          l2.style.opacity = '1';
+          l3.style.transform = 'none';
+        }
+      });
+    }
+
+    // Theme (Dark/Light) Logic
+    const themeBtns = [document.getElementById('themeToggleDesktop'), document.getElementById('themeToggleMobile')].filter(Boolean);
+    function setTheme(isDark) {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-sun text-amber-400"></i>');
+      } else {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-moon"></i>');
+      }
+    }
+    themeBtns.forEach(btn => btn.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark'))));
+    setTheme(localStorage.getItem('theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    // RTL Toggle Logic
+    const rtlBtns = [document.getElementById('rtlToggleDesktop'), document.getElementById('rtlToggleMobile')].filter(Boolean);
+    rtlBtns.forEach(btn => btn.addEventListener('click', () => {
+      const currentDir = bodyEl.getAttribute('dir') || 'ltr';
+      const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+      bodyEl.setAttribute('dir', newDir);
+    }));
+
+    // Dashboard Tabs Switching (Tab 1: Booking, Tab 2: Schedule, Tab 3: Results)
+    function switchDashboardTab(tabId) {
+      const tabs = ['tab1', 'tab2', 'tab3'];
+      tabs.forEach(t => {
+        const pane = document.getElementById('dash' + t.charAt(0).toUpperCase() + t.slice(1));
+        const btn = document.getElementById('dash' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn');
+        if (pane && btn) {
+          if (t === tabId) {
+            pane.classList.remove('hidden');
+            btn.classList.add('tab-active');
+            btn.classList.remove('text-slate-500', 'dark:text-slate-400');
+          } else {
+            pane.classList.add('hidden');
+            btn.classList.remove('tab-active');
+            btn.classList.add('text-slate-500', 'dark:text-slate-400');
+          }
+        }
+      });
+    }
+
+    // Modal Control Functions
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // Close on backdrop click
+    window.addEventListener('click', (e) => {
+      ['loginModal', 'adminDemoModal'].forEach(id => {
+        const modal = document.getElementById(id);
+        if (modal && e.target === modal) {
+          modal.classList.add('hidden');
+        }
+      });
+    });
+
+    // Login Modal Switch
+    function switchLoginModalTab(type) {
+      const tabLogin = document.getElementById('modalTabLogin');
+      const tabRegister = document.getElementById('modalTabRegister');
+      if (type === 'login') {
+        tabLogin.className = 'flex-1 py-2 text-primary border-b-2 border-primary';
+        tabRegister.className = 'flex-1 py-2 text-gray-400 hover:text-slate-700 dark:hover:text-slate-200';
+      } else {
+        tabRegister.className = 'flex-1 py-2 text-primary border-b-2 border-primary';
+        tabLogin.className = 'flex-1 py-2 text-gray-400 hover:text-slate-700 dark:hover:text-slate-200';
+      }
+    }
+
+    function togglePasswordVisibility(inputId) {
+      const inp = document.getElementById(inputId);
+      if (inp) {
+        inp.type = inp.type === 'password' ? 'text' : 'password';
+      }
+    }
+
+    function handlePortalLogin(e) {
+      e.preventDefault();
+      closeModal('loginModal');
+      switchDashboardTab('tab1');
+      const dash = document.getElementById('patient-dashboard');
+      if (dash) dash.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Quick Symptom Selector in Hero
+    function selectSymptom(btn, name, test) {
+      document.querySelectorAll('.symptom-btn').forEach(b => {
+        b.className = 'symptom-btn p-3 rounded-xl border border-slate-200 dark:border-white/10 hover:border-primary text-slate-700 dark:text-slate-200 font-semibold text-left transition flex items-center justify-between';
+        const icon = b.querySelector('i:last-child');
+        if (icon) icon.className = 'fas fa-circle text-gray-300 dark:text-gray-600 text-xs';
+      });
+      btn.className = 'symptom-btn p-3 rounded-xl border border-primary bg-primary/5 text-primary font-semibold text-left transition flex items-center justify-between';
+      const activeIcon = btn.querySelector('i:last-child');
+      if (activeIcon) activeIcon.className = 'fas fa-check-circle text-primary';
+
+      const recTest = document.getElementById('recTestName');
+      const recDesc = document.getElementById('recDesc');
+      if (recTest) recTest.innerText = test;
+      if (recDesc) {
+        if (name.includes('Food')) {
+          recDesc.innerText = 'Evaluation for food allergies (peanut, egg, milk, nuts) with skin testing & supervised Oral Food Challenge (OFC).';
+        } else if (name.includes('Skin')) {
+          recDesc.innerText = 'T.R.U.E. 80-allergen patch testing for contact dermatitis and chemical/cosmetic allergy identification.';
+        } else if (name.includes('Asthma')) {
+          recDesc.innerText = 'Evaluation of allergic airway inflammation, spirometry lung testing, and tailored inhalant desensitization.';
+        } else {
+          recDesc.innerText = 'Tests for tree pollens, grass, ragweed, dust mites, and pet danders with immediate 15-minute diagnostic wheal sizing.';
+        }
+      }
+    }
+
+    // Test Booking Form Logic
+    function handleTestBooking(e) {
+      e.preventDefault();
+      const test = document.getElementById('bookTestType').value;
+      const doc = document.getElementById('bookDoctor').value;
+      const date = document.getElementById('bookDate').value;
+      const time = document.getElementById('bookTime').value;
+
+      document.getElementById('confirmTest').innerText = test;
+      document.getElementById('confirmDoctor').innerHTML = `<i class="fas fa-user-md mr-1 text-primary"></i> ${doc.split('-')[0]}`;
+      document.getElementById('confirmDate').innerHTML = `<i class="fas fa-calendar mr-1 text-accent"></i> ${date} (${time.split('(')[0]})`;
+
+      const notification = document.getElementById('bookingResultNotification');
+      if (notification) {
+        notification.classList.add('ring-2', 'ring-primary', 'bg-orange-50', 'dark:bg-orange-950/40');
+        setTimeout(() => {
+          notification.classList.remove('ring-2', 'ring-primary');
+        }, 3000);
+      }
+      alert('Your allergy test appointment has been successfully booked! A confirmation email and pre-test antihistamine reminder have been sent.');
+    }
+
+    // Cost Estimator
+    function calculateAllergyCost() {
+      const base = parseFloat(document.getElementById('calcService').value) || 180;
+      const insCoeff = parseFloat(document.getElementById('calcInsurance').value) || 0.2;
+      const copay = Math.round(base * insCoeff);
+      const copayEl = document.getElementById('estimatedCopay');
+      if (copayEl) copayEl.innerText = copay;
+    }
+
+    function logReactionModal() {
+      alert('Local Reaction Log: Please record the wheal measurement at 30 minutes. If greater than 20mm or if you experience hives/shortness of breath, contact the clinic nurse on-call immediately.');
+    }
+
+    function downloadImmunoSchedule() {
+      alert('Generating AllerCare Patient Immunotherapy Schedule & Dose Card PDF...');
+    }
+
+    function printResultsReport() {
+      alert('Exporting Official AllerCare Diagnostic Laboratory Results & IgE Report PDF...');
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! Your allergy clinic inquiry has been sent to our registered nursing staff.');
+      e.target.reset();
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      alert('Subscribed! You will now receive daily regional pollen index updates and seasonal allergy alerts.');
+      e.target.reset();
+    }
+
+    // Dynamic Navigation Active State Handler
+    function updateActiveNav() {
+      const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
+      const pageMap = [
+        { key: 'home', pages: ['index.html', 'homepage2.html', 'home.html', ''] },
+        { key: 'service', pages: ['service.html', 'services.html'] },
+        { key: 'doctors', pages: ['doctors.html', 'doctor.html'] },
+        { key: 'booking', pages: ['booking.html', 'book-test.html', 'appointment.html'] },
+        { key: 'about', pages: ['aboutus.html', 'about.html'] },
+        { key: 'contact', pages: ['contact.html'] },
+        { key: 'dashboard', pages: ['admin.html', 'user.html'] }
+      ];
+
+      let activeKey = 'home';
+      for (const item of pageMap) {
+        if (item.pages.includes(path)) {
+          activeKey = item.key;
+          break;
+        }
+      }
+
+      // Highlight Desktop Nav Items
+      document.querySelectorAll('[data-nav]').forEach(el => {
+        const key = el.getAttribute('data-nav');
+        if (key === activeKey) {
+          el.className = 'flex items-center gap-1.5 rounded-lg px-3 py-2 bg-primary text-white font-bold shadow-sm shadow-primary/25 hover:bg-primaryDark transition-all';
+        } else {
+          el.className = 'block rounded-lg px-3 py-2 text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primaryLight hover:bg-slate-100 dark:hover:bg-white/5 transition-colors font-semibold';
+        }
+      });
+
+      // Highlight Mobile Nav Items
+      document.querySelectorAll('[data-nav-mobile]').forEach(el => {
+        const key = el.getAttribute('data-nav-mobile');
+        const icon = el.querySelector('i:first-child') || el.querySelector('.fa-home, .fa-allergies, .fa-user-md, .fa-calendar-check, .fa-clinic-medical, .fa-envelope, .fa-chart-line');
+        if (key === activeKey) {
+          el.classList.add('bg-primary', 'text-white', 'font-bold', 'shadow-md');
+          el.classList.remove('text-slate-800', 'dark:text-slate-200', 'hover:bg-slate-100', 'dark:hover:bg-white/5');
+          if (icon) {
+            icon.dataset.origColor = icon.className;
+            icon.classList.remove('text-primary', 'text-accent', 'text-medGreen');
+            icon.classList.add('text-white');
+          }
+        } else {
+          el.classList.remove('bg-primary', 'text-white', 'shadow-md');
+          el.classList.add('text-slate-800', 'dark:text-slate-200');
+          if (icon && icon.classList.contains('text-white')) {
+            icon.classList.remove('text-white');
+            if (key === 'home' || key === 'service' || key === 'about') icon.classList.add('text-primary');
+            else if (key === 'doctors' || key === 'contact' || key === 'dashboard') icon.classList.add('text-accent');
+            else if (key === 'booking') icon.classList.add('text-medGreen');
+          }
+        }
+      });
+    }
+
+    // Initialize active state on page load
+    document.addEventListener('DOMContentLoaded', updateActiveNav);
+    updateActiveNav();
+  </script>
+</body>
+
+</html>

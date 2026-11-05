@@ -150,7 +150,7 @@
     .status-badge.upcoming { background-color: var(--color-accent); color: white; }
   </style>
 </head>
-<body class="antialiased bg-background h-screen overflow-hidden w-full">
+<body class="antialiased bg-background h-screen overflow-hidden w-full overflow-x-hidden">
 
   <!-- TOP BAR -->
   <header class="border-b border-border bg-background sticky top-0 z-50 w-full">
@@ -557,7 +557,7 @@
         const activeEl = document.getElementById(sectionId);
         if (activeEl) { activeEl.classList.remove('hidden'); activeEl.classList.add('active'); }
         sidebarLinks.forEach(link => { link.classList.remove('active'); if (link.dataset.section === sectionId) link.classList.add('active'); });
-        if (window.innerWidth < 1024) { toggleMobileMenu(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        if (window.innerWidth < 1280) { toggleMobileMenu(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }
       };
       sidebarLinks.forEach(link => { link.addEventListener('click', function(e) { e.preventDefault(); const section = this.dataset.section; if (section) activateSection(section); }); });
       activateSection('overview');

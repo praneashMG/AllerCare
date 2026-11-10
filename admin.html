@@ -140,8 +140,10 @@
       transition: width 0.3s ease;
     }
     .status-badge {
-      padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.7rem;
+      padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.7rem;
       font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+      white-space: nowrap; display: inline-flex; align-items: center; justify-content: center;
+      line-height: 1; flex-shrink: 0;
     }
     .status-badge.active { background-color: var(--color-success); color: white; }
     .status-badge.pending { background-color: var(--color-warning); color: white; }
@@ -336,17 +338,59 @@
               <div class="flex gap-3"><button class="px-6 py-3 bg-accent-gradient text-white rounded-full text-xs font-semibold uppercase tracking-widest shadow-lg"><i class="fas fa-filter mr-1"></i> Filter</button></div>
             </div>
             <div class="space-y-4">
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-user text-accent text-xl"></i></div><div><p class="font-semibold">Sarah Jenkins · Skin Prick Test</p><p class="text-xs text-secondary-text mt-1">10:00 AM · 40 inhalant allergens</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="far fa-check-circle text-success"></i> Checked in</span><span><i class="fas fa-user-md"></i> Dr. Chen</span></div></div></div>
-                <div><span class="status-badge active">In Progress</span></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <i class="fas fa-user text-accent text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug truncate">Sarah Jenkins · Skin Prick Test</p>
+                    <p class="text-xs text-secondary-text mt-1">10:00 AM · 40 inhalant allergens</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-3 mt-1.5 text-xs text-secondary-text">
+                      <span><i class="far fa-check-circle text-success"></i> Checked in</span>
+                      <span><i class="fas fa-user-md"></i> Dr. Chen</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="self-start sm:self-auto shrink-0 pl-14 sm:pl-0">
+                  <span class="status-badge active">In Progress</span>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-user text-accent text-xl"></i></div><div><p class="font-semibold">Michael Torres · Immunotherapy (SCIT)</p><p class="text-xs text-secondary-text mt-1">10:30 AM · Maintenance dose #12</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="far fa-clock text-warning"></i> Waiting</span><span><i class="fas fa-syringe"></i> 0.5 mL</span></div></div></div>
-                <div><span class="status-badge pending">Pending</span></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <i class="fas fa-user text-accent text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug truncate">Michael Torres · Immunotherapy (SCIT)</p>
+                    <p class="text-xs text-secondary-text mt-1">10:30 AM · Maintenance dose #12</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-3 mt-1.5 text-xs text-secondary-text">
+                      <span><i class="far fa-clock text-warning"></i> Waiting</span>
+                      <span><i class="fas fa-syringe"></i> 0.5 mL</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="self-start sm:self-auto shrink-0 pl-14 sm:pl-0">
+                  <span class="status-badge pending">Pending</span>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-user text-accent text-xl"></i></div><div><p class="font-semibold">Emily Rodriguez · Food Allergy Consult</p><p class="text-xs text-secondary-text mt-1">11:15 AM · Peanut & tree nut evaluation</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="far fa-check-circle text-success"></i> Arrived</span><span><i class="fas fa-clipboard-list"></i> New patient</span></div></div></div>
-                <div><span class="status-badge completed">Ready</span></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <i class="fas fa-user text-accent text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug truncate">Emily Rodriguez · Food Allergy Consult</p>
+                    <p class="text-xs text-secondary-text mt-1">11:15 AM · Peanut & tree nut evaluation</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-3 mt-1.5 text-xs text-secondary-text">
+                      <span><i class="far fa-check-circle text-success"></i> Arrived</span>
+                      <span><i class="fas fa-clipboard-list"></i> New patient</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="self-start sm:self-auto shrink-0 pl-14 sm:pl-0">
+                  <span class="status-badge completed">Ready</span>
+                </div>
               </div>
             </div>
           </div>
@@ -357,17 +401,38 @@
           <div class="dashboard-card p-5 sm:p-7 reveal active">
             <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-8 flex items-center gap-2"><span class="text-accent">👥</span> Patient Records</h2>
             <div class="space-y-4">
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div><p class="font-semibold">Sarah Jenkins · #PT-2024-0891</p><p class="text-xs text-secondary-text">Last visit: Apr 09, 2026 · Skin prick test (in progress)</p><p class="text-xs text-accent mt-1"><i class="fas fa-allergies"></i> Allergies: Dust mites, pollen, pet dander</p></div>
-                <div class="flex gap-2"><span class="status-badge active">Active</span><button class="text-accent"><i class="fas fa-eye"></i></button></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="min-w-0">
+                  <p class="font-semibold text-sm sm:text-base leading-snug">Sarah Jenkins · #PT-2024-0891</p>
+                  <p class="text-xs text-secondary-text mt-1">Last visit: Apr 09, 2026 · Skin prick test (in progress)</p>
+                  <p class="text-xs text-accent mt-1"><i class="fas fa-allergies"></i> Allergies: Dust mites, pollen, pet dander</p>
+                </div>
+                <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                  <span class="status-badge active">Active</span>
+                  <button class="text-accent p-1.5 hover:bg-hover rounded-lg transition" title="View details"><i class="fas fa-eye"></i></button>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div><p class="font-semibold">Michael Torres · #PT-2023-0452</p><p class="text-xs text-secondary-text">Last visit: Mar 26, 2026 · Immunotherapy maintenance</p><p class="text-xs text-accent mt-1"><i class="fas fa-syringe"></i> SCIT · Maintenance phase · Dose #12</p></div>
-                <div class="flex gap-2"><span class="status-badge completed">Follow‑up</span><button class="text-accent"><i class="fas fa-eye"></i></button></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="min-w-0">
+                  <p class="font-semibold text-sm sm:text-base leading-snug">Michael Torres · #PT-2023-0452</p>
+                  <p class="text-xs text-secondary-text mt-1">Last visit: Mar 26, 2026 · Immunotherapy maintenance</p>
+                  <p class="text-xs text-accent mt-1"><i class="fas fa-syringe"></i> SCIT · Maintenance phase · Dose #12</p>
+                </div>
+                <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                  <span class="status-badge completed">Follow‑up</span>
+                  <button class="text-accent p-1.5 hover:bg-hover rounded-lg transition" title="View details"><i class="fas fa-eye"></i></button>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div><p class="font-semibold">Emily Rodriguez · #PT-2025-1123</p><p class="text-xs text-secondary-text">Last visit: Feb 14, 2026 · Food challenge follow‑up</p><p class="text-xs text-accent mt-1"><i class="fas fa-utensils"></i> Food allergies: Peanut, tree nuts</p></div>
-                <div class="flex gap-2"><span class="status-badge completed">New</span><button class="text-accent"><i class="fas fa-eye"></i></button></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="min-w-0">
+                  <p class="font-semibold text-sm sm:text-base leading-snug">Emily Rodriguez · #PT-2025-1123</p>
+                  <p class="text-xs text-secondary-text mt-1">Last visit: Feb 14, 2026 · Food challenge follow‑up</p>
+                  <p class="text-xs text-accent mt-1"><i class="fas fa-utensils"></i> Food allergies: Peanut, tree nuts</p>
+                </div>
+                <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                  <span class="status-badge completed">New</span>
+                  <button class="text-accent p-1.5 hover:bg-hover rounded-lg transition" title="View details"><i class="fas fa-eye"></i></button>
+                </div>
               </div>
             </div>
             <div class="mt-6 p-4 bg-hover rounded-2xl text-sm"><i class="fas fa-info-circle text-accent mr-2"></i> All patient data is HIPAA-protected. Role-based access enforced.</div>
@@ -435,9 +500,42 @@
           <div class="dashboard-card p-5 sm:p-7 reveal active">
             <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-8 flex items-center gap-2"><span class="text-accent">👨‍⚕️</span> Staff Directory</h2>
             <div class="space-y-3">
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent"><i class="fas fa-user-md"></i></div><div><p class="font-semibold">Dr. Marcus Chen</p><p class="text-xs text-secondary-text">Chief Allergist · Board‑certified</p></div></div><span class="status-badge active">On duty</span></div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent"><i class="fas fa-user-md"></i></div><div><p class="font-semibold">Dr. Priya Nair</p><p class="text-xs text-secondary-text">Allergist · Immunology</p></div></div><span class="status-badge active">On duty</span></div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent"><i class="fas fa-user-nurse"></i></div><div><p class="font-semibold">Nurse Amy Lawson, RN</p><p class="text-xs text-secondary-text">Clinical Nurse · Testing</p></div></div><span class="status-badge pending">Break</span></div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 min-w-0">
+                  <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0">
+                    <i class="fas fa-user-md"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug">Dr. Marcus Chen</p>
+                    <p class="text-xs text-secondary-text mt-0.5">Chief Allergist · Board‑certified</p>
+                  </div>
+                </div>
+                <span class="status-badge active shrink-0">On duty</span>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 min-w-0">
+                  <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0">
+                    <i class="fas fa-user-md"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug">Dr. Priya Nair</p>
+                    <p class="text-xs text-secondary-text mt-0.5">Allergist · Immunology</p>
+                  </div>
+                </div>
+                <span class="status-badge active shrink-0">On duty</span>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 min-w-0">
+                  <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0">
+                    <i class="fas fa-user-nurse"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug">Nurse Amy Lawson, RN</p>
+                    <p class="text-xs text-secondary-text mt-0.5">Clinical Nurse · Testing</p>
+                  </div>
+                </div>
+                <span class="status-badge pending shrink-0">Break</span>
+              </div>
             </div>
           </div>
         </div>

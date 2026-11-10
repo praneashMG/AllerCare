@@ -141,8 +141,10 @@
       transition: width 0.3s ease;
     }
     .status-badge {
-      padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.7rem;
+      padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.7rem;
       font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+      white-space: nowrap; display: inline-flex; align-items: center; justify-content: center;
+      line-height: 1; flex-shrink: 0;
     }
     .status-badge.active { background-color: var(--color-success); color: white; }
     .status-badge.pending { background-color: var(--color-warning); color: white; }
@@ -342,17 +344,59 @@
               <div class="flex gap-3"><button class="px-6 py-3 bg-accent-gradient text-white rounded-full text-xs font-semibold uppercase tracking-widest shadow-lg"><i class="fas fa-plus mr-1"></i> Book New</button></div>
             </div>
             <div class="space-y-4">
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-vial text-accent text-xl"></i></div><div><p class="font-semibold">Skin Prick Test · 40 Inhalants</p><p class="text-xs text-secondary-text mt-1">Apr 10, 2026 · 10:00 AM · Dr. Marcus Chen</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="far fa-check-circle text-success"></i> Confirmed</span><span><i class="fas fa-clock"></i> 15 min</span></div></div></div>
-                <div><span class="status-badge completed">Confirmed</span></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <i class="fas fa-vial text-accent text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug">Skin Prick Test · 40 Inhalants</p>
+                    <p class="text-xs text-secondary-text mt-1">Apr 10, 2026 · 10:00 AM · Dr. Marcus Chen</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-3 mt-1.5 text-xs text-secondary-text">
+                      <span><i class="far fa-check-circle text-success"></i> Confirmed</span>
+                      <span><i class="fas fa-clock"></i> 15 min</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="self-start sm:self-auto shrink-0 pl-14 sm:pl-0">
+                  <span class="status-badge completed">Confirmed</span>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-syringe text-accent text-xl"></i></div><div><p class="font-semibold">Immunotherapy · Maintenance Dose #9</p><p class="text-xs text-secondary-text mt-1">Apr 12, 2026 · 2:00 PM · Nurse Amy Lawson</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="far fa-clock text-warning"></i> Pending confirmation</span><span><i class="fas fa-syringe"></i> 0.5 mL</span></div></div></div>
-                <div><span class="status-badge pending">Pending</span></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <i class="fas fa-syringe text-accent text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug">Immunotherapy · Maintenance Dose #9</p>
+                    <p class="text-xs text-secondary-text mt-1">Apr 12, 2026 · 2:00 PM · Nurse Amy Lawson</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-3 mt-1.5 text-xs text-secondary-text">
+                      <span><i class="far fa-clock text-warning"></i> Pending confirmation</span>
+                      <span><i class="fas fa-syringe"></i> 0.5 mL</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="self-start sm:self-auto shrink-0 pl-14 sm:pl-0">
+                  <span class="status-badge pending">Pending</span>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-user-md text-accent text-xl"></i></div><div><p class="font-semibold">Follow‑up Consultation</p><p class="text-xs text-secondary-text mt-1">Apr 24, 2026 · 11:30 AM · Dr. Priya Nair</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="far fa-check-circle text-success"></i> Confirmed</span><span><i class="fas fa-clipboard-list"></i> Review</span></div></div></div>
-                <div><span class="status-badge completed">Confirmed</span></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <i class="fas fa-user-md text-accent text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug">Follow‑up Consultation</p>
+                    <p class="text-xs text-secondary-text mt-1">Apr 24, 2026 · 11:30 AM · Dr. Priya Nair</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-3 mt-1.5 text-xs text-secondary-text">
+                      <span><i class="far fa-check-circle text-success"></i> Confirmed</span>
+                      <span><i class="fas fa-clipboard-list"></i> Review</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="self-start sm:self-auto shrink-0 pl-14 sm:pl-0">
+                  <span class="status-badge completed">Confirmed</span>
+                </div>
               </div>
             </div>
             <div class="mt-6 p-4 bg-hover rounded-2xl text-sm"><i class="fas fa-info-circle text-accent mr-2"></i> Cancel or reschedule up to 24h in advance. Late cancellations may incur a fee.</div>
@@ -397,17 +441,59 @@
           <div class="dashboard-card p-5 sm:p-7 reveal active">
             <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-8 flex items-center gap-2"><span class="text-accent">🧪</span> Book Allergy Testing</h2>
             <div class="space-y-4">
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-hand-sparkles text-accent text-xl"></i></div><div><p class="font-semibold">Skin Prick Test · Inhalants</p><p class="text-xs text-secondary-text mt-1">Up to 40 allergens · 15‑minute results</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="fas fa-clock"></i> 20 min</span><span><i class="fas fa-tag"></i> Covered by Premium</span></div></div></div>
-                <div><button class="px-4 py-2 bg-accent-gradient text-white rounded-full text-xs font-semibold">Book</button></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <i class="fas fa-hand-sparkles text-accent text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug">Skin Prick Test · Inhalants</p>
+                    <p class="text-xs text-secondary-text mt-1">Up to 40 allergens · 15‑minute results</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-3 mt-1.5 text-xs text-secondary-text">
+                      <span><i class="fas fa-clock"></i> 20 min</span>
+                      <span><i class="fas fa-tag"></i> Covered by Premium</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="self-start sm:self-auto shrink-0 pl-14 sm:pl-0">
+                  <button class="px-5 py-2 bg-accent-gradient text-white rounded-full text-xs font-semibold shadow-md hover:opacity-95 transition">Book</button>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-utensils text-accent text-xl"></i></div><div><p class="font-semibold">Food Allergy Panel</p><p class="text-xs text-secondary-text mt-1">Peanut, tree nut, egg, milk, shellfish, wheat</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="fas fa-clock"></i> 30 min</span><span><i class="fas fa-tag"></i> Covered by Premium</span></div></div></div>
-                <div><button class="px-4 py-2 bg-accent-gradient text-white rounded-full text-xs font-semibold">Book</button></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <i class="fas fa-utensils text-accent text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug">Food Allergy Panel</p>
+                    <p class="text-xs text-secondary-text mt-1">Peanut, tree nut, egg, milk, shellfish, wheat</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-3 mt-1.5 text-xs text-secondary-text">
+                      <span><i class="fas fa-clock"></i> 30 min</span>
+                      <span><i class="fas fa-tag"></i> Covered by Premium</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="self-start sm:self-auto shrink-0 pl-14 sm:pl-0">
+                  <button class="px-5 py-2 bg-accent-gradient text-white rounded-full text-xs font-semibold shadow-md hover:opacity-95 transition">Book</button>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div class="flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-hand-dots text-accent text-xl"></i></div><div><p class="font-semibold">Patch Test · Contact Dermatitis</p><p class="text-xs text-secondary-text mt-1">80‑allergen panel · 72‑hour reading</p><div class="flex gap-3 mt-1 text-xs text-secondary-text"><span><i class="fas fa-clock"></i> 3 days</span><span><i class="fas fa-tag"></i> Covered by Premium</span></div></div></div>
-                <div><button class="px-4 py-2 bg-accent-gradient text-white rounded-full text-xs font-semibold">Book</button></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <i class="fas fa-hand-dots text-accent text-lg sm:text-xl"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="font-semibold text-sm sm:text-base leading-snug">Patch Test · Contact Dermatitis</p>
+                    <p class="text-xs text-secondary-text mt-1">80‑allergen panel · 72‑hour reading</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-3 mt-1.5 text-xs text-secondary-text">
+                      <span><i class="fas fa-clock"></i> 3 days</span>
+                      <span><i class="fas fa-tag"></i> Covered by Premium</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="self-start sm:self-auto shrink-0 pl-14 sm:pl-0">
+                  <button class="px-5 py-2 bg-accent-gradient text-white rounded-full text-xs font-semibold shadow-md hover:opacity-95 transition">Book</button>
+                </div>
               </div>
             </div>
           </div>
@@ -418,17 +504,38 @@
           <div class="dashboard-card p-5 sm:p-7 reveal active">
             <h2 class="text-xl sm:text-2xl font-serif font-semibold text-primary-text mb-8 flex items-center gap-2"><span class="text-accent">📋</span> My Test Results</h2>
             <div class="space-y-4">
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div><p class="font-semibold">Skin Prick Test · Inhalants</p><p class="text-xs text-secondary-text">Apr 02, 2026 · Dr. Marcus Chen</p><p class="text-xs text-accent mt-1"><i class="fas fa-check-circle"></i> Positive: dust mites (4+), pollen (3+), pet dander (2+)</p></div>
-                <div class="flex gap-2"><span class="status-badge completed">Reviewed</span><button class="text-accent"><i class="fas fa-download"></i></button></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="min-w-0">
+                  <p class="font-semibold text-sm sm:text-base leading-snug">Skin Prick Test · Inhalants</p>
+                  <p class="text-xs text-secondary-text mt-1">Apr 02, 2026 · Dr. Marcus Chen</p>
+                  <p class="text-xs text-accent mt-1.5"><i class="fas fa-check-circle"></i> Positive: dust mites (4+), pollen (3+), pet dander (2+)</p>
+                </div>
+                <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                  <span class="status-badge completed">Reviewed</span>
+                  <button class="text-accent p-1.5 hover:bg-hover rounded-lg transition" title="Download report"><i class="fas fa-download"></i></button>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div><p class="font-semibold">Food Allergy Panel</p><p class="text-xs text-secondary-text">Mar 15, 2026 · Dr. Priya Nair</p><p class="text-xs text-accent mt-1"><i class="fas fa-check-circle"></i> Positive: peanut (3+), tree nut (2+) · Negative: egg, milk</p></div>
-                <div class="flex gap-2"><span class="status-badge completed">Reviewed</span><button class="text-accent"><i class="fas fa-download"></i></button></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="min-w-0">
+                  <p class="font-semibold text-sm sm:text-base leading-snug">Food Allergy Panel</p>
+                  <p class="text-xs text-secondary-text mt-1">Mar 15, 2026 · Dr. Priya Nair</p>
+                  <p class="text-xs text-accent mt-1.5"><i class="fas fa-check-circle"></i> Positive: peanut (3+), tree nut (2+) · Negative: egg, milk</p>
+                </div>
+                <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                  <span class="status-badge completed">Reviewed</span>
+                  <button class="text-accent p-1.5 hover:bg-hover rounded-lg transition" title="Download report"><i class="fas fa-download"></i></button>
+                </div>
               </div>
-              <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
-                <div><p class="font-semibold">Patch Test · Contact Dermatitis</p><p class="text-xs text-secondary-text">Feb 20, 2026 · Dr. Marcus Chen</p><p class="text-xs text-accent mt-1"><i class="fas fa-check-circle"></i> Positive: nickel (2+), fragrance mix (1+)</p></div>
-                <div class="flex gap-2"><span class="status-badge completed">Reviewed</span><button class="text-accent"><i class="fas fa-download"></i></button></div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 bg-hover rounded-2xl">
+                <div class="min-w-0">
+                  <p class="font-semibold text-sm sm:text-base leading-snug">Patch Test · Contact Dermatitis</p>
+                  <p class="text-xs text-secondary-text mt-1">Feb 20, 2026 · Dr. Marcus Chen</p>
+                  <p class="text-xs text-accent mt-1.5"><i class="fas fa-check-circle"></i> Positive: nickel (2+), fragrance mix (1+)</p>
+                </div>
+                <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+                  <span class="status-badge completed">Reviewed</span>
+                  <button class="text-accent p-1.5 hover:bg-hover rounded-lg transition" title="Download report"><i class="fas fa-download"></i></button>
+                </div>
               </div>
             </div>
             <div class="mt-6 p-4 bg-hover rounded-2xl text-sm"><i class="fas fa-info-circle text-accent mr-2"></i> Results are for your information. Always discuss treatment options with your allergist.</div>
